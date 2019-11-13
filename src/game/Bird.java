@@ -66,7 +66,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 			Pipe p = iterator.next();
 			int y_diff = GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP;
 			int y_diff1 = y_diff + GlobalVariables.GAP
-						  -GlobalVariables.BIRD_SIZE + GlobalVariables.PIPE_PLACEMENT_ADJUSTMETN;
+						  -GlobalVariables.BIRD_SIZE + GlobalVariables.PIPE_PLACEMENT_ADJUSTMENT;
 			if(b.y < y_diff || b.y > y_diff1)
 			{
 				int x_diff = p.getPositionX() - b.x;

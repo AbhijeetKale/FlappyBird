@@ -29,7 +29,7 @@ public class GlobalVariables {
 	static final int INIT_PIPE_X = GlobalVariables.C_WIDTH - 100;
 	static final int INIT_PIPE_Y = GlobalVariables.C_HEIGHT + PIPE_WIDTH;
 	/*Adjustment to Y alignment of pipes*/
-	static final int PIPE_PLACEMENT_ADJUSTMETN = -40;
+	static final int PIPE_PLACEMENT_ADJUSTMENT = -30;
 	static boolean isBirdAlive;
 	
 	static String osName;

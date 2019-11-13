@@ -3,6 +3,7 @@ package game;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,7 +12,7 @@ import javax.swing.OverlayLayout;
 
 public class Main {
 	
-	private Canvas canvas;
+	private Canvas canvas = null;
 	private Bird bird;
 	private Map map;
 	private JPanel container;
@@ -21,7 +22,8 @@ public class Main {
 		container.setLayout(new OverlayLayout(container));
 		
 		bird = new Bird(GlobalVariables.BIRD_SIZE, GlobalVariables.BIRD_SIZE);
-		canvas = new Canvas();
+		if(canvas == null)
+			canvas = new Canvas();
 		map = new Map();
 		GlobalVariables.osName = System.getProperty("os.name");
 		if(GlobalVariables.osName.contentEquals("Linux"))
@@ -66,10 +68,18 @@ public class Main {
 		/*Game ends*/
 		System.out.println("Game ended");
 	}
+	public void clearWindow()
+	{
+		bird.removeAll();
+		map.removeAll();
+		container.removeAll();
+		canvas.removeAll();
+	}
 	public static void main(String[] args)
 	{
 		Main m = new Main();
 		m.init();
 		m.game();
+		m.clearWindow();
 	}
 }

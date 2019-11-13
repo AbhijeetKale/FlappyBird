@@ -117,7 +117,7 @@ public class Map extends JPanel implements Runnable{
 						GlobalVariables.C_HEIGHT - data.getHeight() - GlobalVariables.GAP);
 			
 			g2d.fillRect(x - GlobalVariables.MOVEMENT_X, 
-						 GlobalVariables.C_HEIGHT - data.getHeight() + GlobalVariables.PIPE_PLACEMENT_ADJUSTMETN, 
+						 GlobalVariables.C_HEIGHT - data.getHeight() + GlobalVariables.PIPE_PLACEMENT_ADJUSTMENT, 
 						 GlobalVariables.PIPE_WIDTH, data.getHeight());
 		}
 	}
