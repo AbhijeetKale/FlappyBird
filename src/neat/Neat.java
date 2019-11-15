@@ -2,12 +2,17 @@ package neat;
 
 import java.util.HashMap;
 
+/*Main control class for NEAT algorithm*/
+
 public class Neat {
 	
-	private HashMap<Pair<Integer, Integer>, Integer> existingGenes;
+
+	private int globalInovationNumber;
+	private HashMap<Pair<Integer, Integer>, Integer> existingGenes;	//global existing Genes
 	
 	public Neat()
 	{
-		existingGenes = new HashMap<Pair<Integer, Integer>, Integer>();
+		this.existingGenes = new HashMap<Pair<Integer, Integer>, Integer>();
+		this.globalInovationNumber = 1;
 	}
 }

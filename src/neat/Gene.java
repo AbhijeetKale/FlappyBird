@@ -1,5 +1,5 @@
 package neat;
-
+/*Has the info of each connection in the neural net*/
 public class Gene {
 	private final int inNode;
 	private final int outNode;

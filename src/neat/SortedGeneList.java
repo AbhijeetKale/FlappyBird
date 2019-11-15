@@ -1,18 +1,23 @@
 package neat;
 
+import java.util.Iterator;
 
+
+class listNode
+{
+	Gene data;
+	listNode next;
+	public listNode(Gene data)
+	{
+		this.data = data;
+		this.next = null;
+	}
+}
+
+/*Specifically used to store Genes in the genome in a sorted manner*/
 public class SortedGeneList {
 
-	private class listNode
-	{
-		Gene data;
-		listNode next;
-		public listNode(Gene data)
-		{
-			this.data = data;
-			this.next = null;
-		}
-	}
+
 	
 	listNode head, tail;
 	int size;
@@ -23,7 +28,7 @@ public class SortedGeneList {
 		this.tail = null;
 		this.size = 0;
 	}
-	
+	/*Adding elements in a sorted manner*/
 	public void add(Gene gene)
 	{
 		this.size++;
@@ -79,6 +84,10 @@ public class SortedGeneList {
 		tmp.next = null;
 		this.size--;
 	}
+	public Iterator<Gene> iterator()
+	{
+		return new SortedListIterator(this);
+	}
 	public void prinList()
 	{
 		listNode tmp;
@@ -90,4 +99,28 @@ public class SortedGeneList {
 		}
 		System.out.println();
 	}
+}
+
+class SortedListIterator implements Iterator<Gene>
+{
+	listNode cursor;
+
+	public SortedListIterator(SortedGeneList list)
+	{
+		cursor = list.head;
+	}
+	@Override
+	public boolean hasNext() {
+		// TODO Auto-generated method stub
+		return cursor != null;
+	}
+
+	@Override
+	public Gene next() {
+		// TODO Auto-generated method stub
+		Gene data = cursor.data;
+		cursor = cursor.next;
+		return data;
+	}
+	
 }

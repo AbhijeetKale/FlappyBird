@@ -1,9 +1,14 @@
 package neat;
-
+/*Helper class created to store data in pairs*/
 class Pair<A, B>
 {
 	A data1;
 	B data2;
+	public Pair()
+	{
+		this.data1 = null;
+		this.data2 = null;
+	}
 	public Pair(A data1, B data2)
 	{
 		this.data1 = data1;
