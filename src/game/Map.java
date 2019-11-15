@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.util.Iterator;
 import java.util.Random;
 
 import javax.swing.JPanel;
@@ -99,7 +100,7 @@ public class Map extends JPanel implements Runnable{
 		super.paintComponent(g);
 		Pipe data;
 		Graphics2D g2d = (Graphics2D) g;
-		CustomIterator<Pipe> i = pipesInView.iterator();
+		Iterator<Pipe> i = pipesInView.iterator();
 		while(i.hasNext())
 		{
 			data = i.next();
