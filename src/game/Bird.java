@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Iterator;
 
 import javax.swing.JPanel;
 
@@ -60,7 +61,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	/*Detect collision between bird and pipes*/
 	private boolean Collision(Bird b)
 	{
-		CustomIterator<Pipe> iterator = pipesInView.iterator();
+		Iterator<Pipe> iterator = pipesInView.iterator();
 		while(iterator.hasNext())
 		{
 			Pipe p = iterator.next();
