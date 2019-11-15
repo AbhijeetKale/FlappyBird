@@ -111,7 +111,11 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 				GlobalVariables.isBirdAlive= false;
 			}
 			else if(y <= 0)
+			{
 				y = 0;
+				if(velocity < 0)
+					velocity = 0;
+			}
 		}
 	}
 	@Override
