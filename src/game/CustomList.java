@@ -54,7 +54,7 @@ public class CustomList<E> implements Iterable<E>{
 	}
 	
 	@Override
-	public CustomIterator<E> iterator() {
+	public Iterator<E> iterator() {
 		// TODO Auto-generated method stub
 		return new CustomIterator<E>(this);
 	}
