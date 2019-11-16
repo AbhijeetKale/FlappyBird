@@ -25,6 +25,7 @@ public class Main {
 		if(canvas == null)
 			canvas = new Canvas();
 		map = new Map();
+		GlobalVariables.isBirdAlive = true;
 		GlobalVariables.osName = System.getProperty("os.name");
 		if(GlobalVariables.osName.contentEquals("Linux"))
 			GlobalVariables.animationSync = true;
