@@ -1,5 +1,6 @@
 package neat;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -17,4 +18,6 @@ public class Genome {
 	{
 		return this.genome.iterator();
 	}
+
+
 }
