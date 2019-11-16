@@ -13,7 +13,7 @@ public class Genome {
 		genome = new SortedGeneList();
 		connsPresent = new HashSet<Integer>();
 	}
-	public Iterator<Gene> iterator()
+	public SortedListIterator iterator()
 	{
 		return this.genome.iterator();
 	}

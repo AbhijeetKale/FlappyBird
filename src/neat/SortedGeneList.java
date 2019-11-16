@@ -84,7 +84,7 @@ public class SortedGeneList {
 		tmp.next = null;
 		this.size--;
 	}
-	public Iterator<Gene> iterator()
+	public SortedListIterator iterator()
 	{
 		return new SortedListIterator(this);
 	}
@@ -114,7 +114,10 @@ class SortedListIterator implements Iterator<Gene>
 		// TODO Auto-generated method stub
 		return cursor != null;
 	}
-
+	public Gene getDataAtCurrentNode()
+	{
+		return cursor.data;
+	}
 	@Override
 	public Gene next() {
 		// TODO Auto-generated method stub

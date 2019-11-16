@@ -30,48 +30,48 @@ public class GenomePairData {
 	private void createGenomePariData()
 	{
 		Gene gene1 = null, gene2 = null;
-		boolean iterate1Flag = true, iterate2Flag = true;
 		int inNo1 = 0, inNo2 = 0;
-		Iterator<Gene> i1 = this.genome1.iterator();
-		Iterator<Gene> i2 = this.genome2.iterator();
+		SortedListIterator i1 = this.genome1.iterator();
+		SortedListIterator i2 = this.genome2.iterator();
 		while(i1.hasNext() && i2.hasNext())
 		{
-			if(iterate1Flag)
-				gene1 = i1.next();
-			if(iterate2Flag)
-				gene2 = i2.next();
+			gene1 = i1.getDataAtCurrentNode();
+			gene2 = i2.getDataAtCurrentNode();
 			inNo1 = gene1.getInovationNumber();
 			inNo2 = gene2.getInovationNumber();
-			iterate1Flag = true;
-			iterate2Flag = true;			
 			if(inNo1 == inNo2)
+			{
 				matchingPairs.add(new Pair<Gene, Gene>(gene1, gene2));
+				i1.next();
+				i2.next();
+			}
 			else if(matchingPairs.size() == 0)
 			{
 				if(inNo1 < inNo2)
 				{
 					excessGenes1.add(gene1);
-					iterate2Flag = false;
+					i1.next();
 				}
 				else
 				{
 					excessGenes2.add(gene2);
-					iterate1Flag = false;
+					i2.next();
 				}
 			}
 			else if(inNo1 < inNo2)
 			{
 				disJointGenes1.add(gene1);
-				iterate2Flag = false;
+				i1.next();
 			}
 			else if(inNo1 > inNo2)
 			{
 				disJointGenes2.add(gene2);
-				iterate1Flag = false;
+				i2.next();
 			}
 		}
 		while(i1.hasNext())
 			excessGenes1.add(i1.next());
+		
 		while(i2.hasNext())
 			excessGenes2.add(i2.next());
 	}
