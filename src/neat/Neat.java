@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /*Main control class for NEAT algorithm*/
 
-public class Neat {
+public abstract class Neat {
 	
 
 	private int globalInovationNumber;
@@ -22,4 +22,5 @@ public class Neat {
 		Globals.delta_C2 = c2;
 		Globals.delta_C3 = c3;
 	}
+	public abstract void calculateFitnessScore();
 }

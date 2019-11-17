@@ -2,8 +2,8 @@ package neat;
 /*Helper class created to store data in pairs*/
 class Pair<A, B>
 {
-	A data1;
-	B data2;
+	private A data1;
+	private B data2;
 	public Pair()
 	{
 		this.data1 = null;

@@ -9,4 +9,8 @@ public class Globals {
 	static double delta_C3 = 0.3;
 	static int population_Normalization_Threshold = 20;
 	//speciation
+	
+	//crossover
+	static double enableDisableFlagProbablity = 75;
+	//crossover
 }
