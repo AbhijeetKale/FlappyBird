@@ -12,7 +12,7 @@ public class RandomGenerator {
 		for(int count = 0; count < probs.length; count++)
 		{
 			sum += probs[count];
-			if(number < sum)
+			if(number <= sum)
 			{
 				return list[count];
 			}
