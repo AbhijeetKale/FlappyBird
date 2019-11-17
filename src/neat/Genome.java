@@ -1,26 +1,25 @@
 package neat;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 
 /*Represent the list of Genes/Connections in a Neural net, basically the neural itself*/
-public class Genome {
+public class Genome implements Comparator<Gene>{
 	
-	private SortedGeneList genome;
-	private HashSet<Integer> connsPresent;	//inovation numbers hash
+	private SortedList<Gene> genome;
 	private double fitness;
 	public Genome()
 	{
-		genome = new SortedGeneList();
-		connsPresent = new HashSet<Integer>();
+		genome = new SortedList<Gene>(this);
 		fitness = 0;
 	}
 	public void setFitnessScore(double fitness)	
 	{
 		this.fitness = fitness;
 	}
-	public SortedListIterator iterator()
+	public SortedListIterator<Gene> iterator()
 	{
 		return this.genome.iterator();
 	}
@@ -96,5 +95,13 @@ public class Genome {
 		
 		return child;
 	}
-
+	@Override
+	public int compare(Gene arg0, Gene arg1) {
+		// TODO Auto-generated method stub
+		if(arg0.getInovationNumber() < arg1.getInovationNumber())
+			return -1;
+		else if(arg0.getInovationNumber() > arg1.getInovationNumber())
+			return 1;
+		return 0;
+	}
 }

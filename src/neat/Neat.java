@@ -9,11 +9,17 @@ public abstract class Neat {
 
 	private int globalInovationNumber;
 	private HashMap<Pair<Integer, Integer>, Integer> existingGenes;	//global existing Genes
+	private int inputNodes;
+	private int outputNodes;
+	private int initPopulationCount;
 	
-	public Neat()
+	public Neat(int inputNodes, int outputNodes, int populationCount)
 	{
 		this.existingGenes = new HashMap<Pair<Integer, Integer>, Integer>();
 		this.globalInovationNumber = 1;
+		this.inputNodes= inputNodes;
+		this.outputNodes = outputNodes;
+		this.initPopulationCount = populationCount;
 	}
 	public void setSpeciationParameters(double deltaThreshold, double c1, double c2, double c3)
 	{

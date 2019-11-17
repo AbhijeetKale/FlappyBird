@@ -1,13 +1,14 @@
 package neat;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
 
-class listNode
+class listNode<E>
 {
-	Gene data;
-	listNode next;
-	public listNode(Gene data)
+	E data;
+	listNode<E> next;
+	public listNode(E data)
 	{
 		this.data = data;
 		this.next = null;
@@ -15,39 +16,40 @@ class listNode
 }
 
 /*Specifically used to store Genes in the genome in a sorted manner*/
-public class SortedGeneList {
+public class SortedList<E> {
 
 
 	
-	listNode head, tail;
-	int size;
+	private listNode<E> head, tail;
+	private int size;
+	private Comparator<E> comparaTor;
 	
-	public SortedGeneList()
+	public SortedList(Comparator<E> comparaTor)
 	{
 		this.head = null;
 		this.tail = null;
 		this.size = 0;
 	}
 	/*Adding elements in a sorted manner*/
-	public void add(Gene gene)
+	public void add(E data)
 	{
 		this.size++;
 		if(this.head == null)
 		{
-			this.head = new listNode(gene);
+			this.head = new listNode<E>(data);
 			this.tail = head;
 		}
 		else
 		{
-			listNode tmp, nextNode;
+			listNode<E> tmp, nextNode;
 			tmp = this.head;
 			while(tmp != null)
 			{
-				if(gene.getInovationNumber() < tmp.data.getInovationNumber())
+				if(comparaTor.compare(data, tmp.data) < 0)
 				{
 					nextNode = tmp.next;
-					tmp.next = new listNode(tmp.data);
-					tmp.data = gene;
+					tmp.next = new listNode<E>(tmp.data);
+					tmp.data = data;
 					if(tail == tmp)
 						tail = tail.next;
 					tmp = tmp.next;
@@ -58,10 +60,18 @@ public class SortedGeneList {
 			}
 			if(tmp == null)
 			{
-				tail.next = new listNode(gene);
+				tail.next = new listNode<E>(data);
 				tail  = tail.next;
 			}
 		}
+	}
+	public listNode<E> getHead()
+	{
+		return this.head;
+	}
+	public listNode<E> getTail()
+	{
+		return this.tail;
 	}
 	public void remove(int index) throws IndexOutOfBoundsException
 	{
@@ -69,7 +79,7 @@ public class SortedGeneList {
 		{
 			throw new IndexOutOfBoundsException();
 		}
-		listNode tmp = this.head, prev = null;
+		listNode<E> tmp = this.head, prev = null;
 		for(int count = 0; count < index; count++)
 		{
 			prev = tmp;
@@ -84,44 +94,38 @@ public class SortedGeneList {
 		tmp.next = null;
 		this.size--;
 	}
-	public SortedListIterator iterator()
+	public SortedListIterator<E> iterator()
 	{
-		return new SortedListIterator(this);
+		return new SortedListIterator<E>(this);
 	}
-	public void prinList()
+	
+	public int size()
 	{
-		listNode tmp;
-		tmp = this.head;
-		while(tmp != null)
-		{
-			System.out.print(tmp.data.getInovationNumber() + " ");
-			tmp = tmp.next;
-		}
-		System.out.println();
+		return this.size;
 	}
 }
 
-class SortedListIterator implements Iterator<Gene>
+class SortedListIterator<E> implements Iterator<E>
 {
-	listNode cursor;
+	listNode<E> cursor;
 
-	public SortedListIterator(SortedGeneList list)
+	public SortedListIterator(SortedList<E> list)
 	{
-		cursor = list.head;
+		cursor = list.getHead();
 	}
 	@Override
 	public boolean hasNext() {
 		// TODO Auto-generated method stub
 		return cursor != null;
 	}
-	public Gene getDataAtCurrentNode()
+	public E getDataAtCurrentNode()
 	{
 		return cursor.data;
 	}
 	@Override
-	public Gene next() {
+	public E next() {
 		// TODO Auto-generated method stub
-		Gene data = cursor.data;
+		E data = cursor.data;
 		cursor = cursor.next;
 		return data;
 	}

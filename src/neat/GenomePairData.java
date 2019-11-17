@@ -31,8 +31,8 @@ public class GenomePairData {
 	{
 		Gene gene1 = null, gene2 = null;
 		int inNo1 = 0, inNo2 = 0;
-		SortedListIterator i1 = this.genome1.iterator();
-		SortedListIterator i2 = this.genome2.iterator();
+		SortedListIterator<Gene> i1 = this.genome1.iterator();
+		SortedListIterator<Gene> i2 = this.genome2.iterator();
 		while(i1.hasNext() && i2.hasNext())
 		{
 			gene1 = i1.getDataAtCurrentNode();

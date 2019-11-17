@@ -7,7 +7,12 @@ public class Species {
 
 	private Genome representativeGenome = null;
 	private int population = 0;
-	
+	private ArrayList<Gene> speciesPopulation;
+
+	public Species()
+	{
+		this.speciesPopulation = new ArrayList<Gene>();
+	}
 	public Genome getRepresentativeGenome()
 	{
 		return this.representativeGenome;
@@ -53,5 +58,9 @@ public class Species {
 		delta += Globals.delta_C3 * avgWeightDifference;
 		
 		return delta > Globals.delta_Threshhold ? false : true;
+	}
+	public void remove()
+	{
+		
 	}
 }
