@@ -1,25 +1,31 @@
 package neat;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 
-public class Species {
+public class Species implements Comparator<Genome>{
 
 	private Genome representativeGenome = null;
-	private int population = 0;
-	private ArrayList<Gene> speciesPopulation;
-
+	private SortedList<Genome> speciesPopulation;
 	public Species()
 	{
-		this.speciesPopulation = new ArrayList<Gene>();
+		this.speciesPopulation = new SortedList<Genome>(this);
+		this.representativeGenome = null;
 	}
+	public Species(Genome g)
+	{
+		this.speciesPopulation = new SortedList<Genome>(this);
+		speciesPopulation.add(g);
+	}
+
 	public Genome getRepresentativeGenome()
 	{
 		return this.representativeGenome;
 	}
 	public int getSpeciesPopulation()
 	{
-		return this.population;
+		return this.speciesPopulation.size();
 	}
 	private double abs(double s)
 	{
@@ -35,6 +41,10 @@ public class Species {
 	}
 	public boolean genomeBelongsToSpecies(Genome genome)
 	{
+		if(this.representativeGenome == null)
+		{
+			return true;
+		}
 		double delta;
 		double avgWeightDifference = 0;
 		int disjointGenesDifference, excessGenesDifference;
@@ -51,16 +61,30 @@ public class Species {
 		disjointGenesDifference = abs(genomePairData.getDisjointGenes1().size() - genomePairData.getDisjointGenes2().size());
 		excessGenesDifference = abs(genomePairData.getExcessGenes1().size() - genomePairData.getExcessGenes2().size());
 		delta = Globals.delta_C1 * (double)excessGenesDifference + Globals.delta_C2 * (double)disjointGenesDifference;
-		if(this.population > Globals.population_Normalization_Threshold)
-		{
-			delta = delta / this.population;
-		}
+		if(this.speciesPopulation.size() > Globals.population_Normalization_Threshold)
+			delta = delta / this.speciesPopulation.size();
 		delta += Globals.delta_C3 * avgWeightDifference;
 		
 		return delta > Globals.delta_Threshhold ? false : true;
 	}
-	public void remove()
+	public void addGenome(Genome genome)
 	{
+		this.speciesPopulation.add(genome);
+		this.representativeGenome = speciesPopulation.getFirstElement();
 		
+	}
+	public void removeFromIndexToEnd(int fromIndex)
+	{
+		this.speciesPopulation.removeFromIndexToEnd(fromIndex);
+		this.representativeGenome = speciesPopulation.getFirstElement();
+	}
+	@Override
+	public int compare(Genome arg0, Genome arg1) {
+		// TODO Auto-generated method stub
+		if(arg0.getFitnessScore() < arg1.getFitnessScore())
+			return 1;
+		else if(arg0.getFitnessScore() > arg1.getFitnessScore())
+			return -1;
+		return 0;
 	}
 }

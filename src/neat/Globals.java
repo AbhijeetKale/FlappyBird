@@ -13,4 +13,9 @@ public class Globals {
 	//crossover
 	static double enableDisableFlagProbablity = 75;
 	//crossover
+	
+	//Selection
+	static double populationSruvivalPercentage = 50;
+	static double minimumPopulation = 5;
+	//Selection
 }

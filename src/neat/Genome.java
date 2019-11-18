@@ -2,7 +2,6 @@ package neat;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Iterator;
 
 /*Represent the list of Genes/Connections in a Neural net, basically the neural itself*/

@@ -73,12 +73,33 @@ public class SortedList<E> {
 	{
 		return this.tail;
 	}
+	public void removeFromIndexToEnd(int fromIndex) throws IndexOutOfBoundsException
+	{
+		if(this.size <= fromIndex)
+			throw new IndexOutOfBoundsException();
+		listNode<E> tmp = this.head, prev = null, aux;
+		for(int count = 0; count < fromIndex; count++)
+		{
+			prev = tmp;
+			tmp = tmp.next;
+		}
+		if(prev != null)
+			prev.next = null;
+		else
+			this.head = null;
+		while(tmp != null)
+		{
+			aux = tmp.next;
+			tmp.next = null;
+			tmp = aux;
+			this.size--;
+		}
+		this.tail = prev;
+	}
 	public void remove(int index) throws IndexOutOfBoundsException
 	{
 		if(this.size <= index)
-		{
 			throw new IndexOutOfBoundsException();
-		}
 		listNode<E> tmp = this.head, prev = null;
 		for(int count = 0; count < index; count++)
 		{
@@ -102,6 +123,10 @@ public class SortedList<E> {
 	public int size()
 	{
 		return this.size;
+	}
+	public E getFirstElement()
+	{
+		return this.head.data;
 	}
 }
 
