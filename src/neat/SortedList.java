@@ -128,6 +128,19 @@ public class SortedList<E> {
 	{
 		return this.head.data;
 	}
+	public E getData(int index) throws IndexOutOfBoundsException
+	{
+		if(index >= size)
+		{
+			throw new IndexOutOfBoundsException();
+		}
+		listNode<E> tmp = head;
+		for(int count = 0; count < index; count++)
+		{
+			tmp = tmp.next;
+		}
+		return tmp.data;
+	}
 }
 
 class SortedListIterator<E> implements Iterator<E>
