@@ -1,13 +1,13 @@
 package neat;
 /*Has the info of each connection in the neural net*/
 public class Gene {
-	private final int inNode;
-	private final int outNode;
+	private final Node inNode;
+	private final Node outNode;
 	private double weight;
 	private boolean enabled; // true/false
 	private final int inovationNumber;
 	
-	public Gene(int inNode, int outNode, double weight, boolean enabled, int inovationNumber)
+	public Gene(Node inNode, Node outNode, double weight, boolean enabled, int inovationNumber)
 	{
 		this.inNode = inNode;
 		this.outNode = outNode;
@@ -31,11 +31,11 @@ public class Gene {
 	{
 		return this.weight;
 	}
-	public int getInNode()
+	public Node getInNode()
 	{
 		return this.inNode;
 	}
-	public int getOutNode()
+	public Node getOutNode()
 	{
 		return this.outNode;
 	}
