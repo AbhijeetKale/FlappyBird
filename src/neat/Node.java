@@ -18,4 +18,8 @@ public class Node {
 	{
 		return this.nodeId;
 	}
+	public NodeType getNodeType()
+	{
+		return this.type;
+	}
 }

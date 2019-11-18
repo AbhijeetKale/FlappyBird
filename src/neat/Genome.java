@@ -2,6 +2,7 @@ package neat;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -10,12 +11,12 @@ public class Genome implements Comparator<Gene>{
 	
 	private SortedList<Gene> genome;
 	private double fitness;
-	private HashSet<Node> nodes;
+	private HashMap<Node, Node> nodes;
 	
 	public Genome()
 	{
 		genome = new SortedList<Gene>(this);
-		nodes = new HashSet<Node>();
+		nodes = new HashMap<Node, Node>();
 		fitness = 0;
 	}
 	public void setFitnessScore(double fitness)	
@@ -28,10 +29,10 @@ public class Genome implements Comparator<Gene>{
 	}
 	public void addGene(Gene g)
 	{
-		if(!nodes.contains(g.getInNode()))
-			nodes.add(g.getInNode());
-		if(!nodes.contains(g.getOutNode()))
-			nodes.add(g.getOutNode());
+		if(!nodes.containsKey(g.getInNode()))
+			nodes.put(g.getInNode(), g.getInNode());
+		if(!nodes.containsKey(g.getOutNode()))
+			nodes.put(g.getOutNode(), g.getOutNode());
 		this.genome.add(g);
 	}
 	public double getFitnessScore()
@@ -115,9 +116,23 @@ public class Genome implements Comparator<Gene>{
 		return this.genome.getData(index);
 	}
 	
-	public HashSet<Node> getNodes()
+	public HashMap<Node, Node> getNodes()
 	{
 		return this.nodes;
+	}
+	
+	public boolean containsGene(Node inNode, Node outNode)
+	{
+		SortedListIterator<Gene> i = genome.iterator();
+		while(i.hasNext())
+		{
+			Gene g = i.next();
+			if(g.getInNode() == inNode && g.getOutNode() == outNode)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@Override

@@ -167,5 +167,4 @@ class SortedListIterator<E> implements Iterator<E>
 		cursor = cursor.next;
 		return data;
 	}
-	
 }

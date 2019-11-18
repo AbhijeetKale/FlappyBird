@@ -2,6 +2,7 @@ package neat;
 
 
 public class Globals {
+	
 	//speciation
 	static double delta_Threshhold = 3.0;
 	static double delta_C1 = 0.7;
@@ -20,8 +21,15 @@ public class Globals {
 	//Selection
 	
 	//mutation
-	static double weightMutationProbability = 0.6;
-	static double connectionMutationProbability = 0.2;
-	static double nodeMutationProbability = 0.2;
+	static double weightMutationProbability = 60;
+	static double connectionMutationProbability = 20;
+	static double nodeMutationProbability = 20;
+	static double randomlyChangeWeightProbability = 10;
+	static double weightDelta = 0.1;
 	//mutation
+	
+	//Gene Params
+	static double minWeight = -1;
+	static double maxWeight = 1;
+	//Gene Params
 }

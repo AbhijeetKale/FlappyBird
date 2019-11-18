@@ -26,12 +26,16 @@ public abstract class Neat {
 	{
 		this.allExistingGenes = new HashMap<Pair<Node, Node>, Gene>();
 		this.globalInovationNumber = 1;
-		this.inputNodes = new ArrayList<Node>(inputNodes);
-		this.outputNodes = new ArrayList<Node>(outputNodes);
+		this.inputNodes = new ArrayList<Node>();
+		this.outputNodes = new ArrayList<Node>();
 		this.initPopulationCount = initPopulationCount;
 		this.speciesList = new ArrayList<Species>();
+		initPopulation(inputNodes, outputNodes, initPopulationCount);
 	}
-	
+	private void initPopulation(int inputCount, int outputCount, int initPopulationCount)
+	{
+		
+	}
 	public void setSpeciationParameters(double deltaThreshold, double c1, double c2, double c3)
 	{
 		Globals.delta_Threshhold = deltaThreshold;
@@ -46,9 +50,61 @@ public abstract class Neat {
 		Globals.minimumPopulation = minimumPopulation;
 	}
 	
-	private void addRandomConnectionToGenome(Genome genome)
+	public void setMutaionParameters(double weightMutationProbability, double connectionMutationProbability,
+									 double nodeMutationProbability, double randomlyChangeWeightProbability,
+									 double weightDelta)
 	{
-
+		Globals.weightMutationProbability = weightMutationProbability;
+		Globals.connectionMutationProbability = connectionMutationProbability;
+		Globals.nodeMutationProbability = nodeMutationProbability;
+		Globals.randomlyChangeWeightProbability = randomlyChangeWeightProbability;
+		Globals.weightDelta = weightDelta;
+	}
+	
+	public void setConnectionParams(double minWeight, double maxWeight)
+	{
+		Globals.minWeight = minWeight;
+		Globals.maxWeight = maxWeight;
+	}
+	
+	private boolean addRandomConnectionToGenome(Genome genome)
+	{
+		Node inNode = null, outNode = null;
+		NodeType type;
+		RandomGenerator randomGenerator = new RandomGenerator();
+		Node[] nodes = (Node[]) genome.getNodes().values().toArray();
+		double weight = randomGenerator.getRandomSignedDouble();
+		int innovationNumber, count = 0;
+		while(true)
+		{
+			type = NodeType.INPUT;
+			while(type == NodeType.INPUT)
+			{
+				inNode = (Node) randomGenerator.getRandomAction(nodes);
+				type = inNode.getNodeType();
+			}
+			type = NodeType.OUTPUT;
+			int id = inNode.getNodeId();
+			while(type == NodeType.OUTPUT || id == inNode.getNodeId())
+			{
+				outNode = (Node) randomGenerator.getRandomAction(nodes);
+				type = outNode.getNodeType();
+				id = outNode.getNodeId();
+			}
+			if(!genome.containsGene(inNode, outNode))
+				break;
+			if(count > 10)
+				return false;
+			count++;
+		}
+		Pair<Node, Node> pair = new Pair<Node, Node>(inNode, outNode);
+		if(allExistingGenes.containsKey(pair))
+			innovationNumber = allExistingGenes.get(pair).getInovationNumber();
+		else
+			innovationNumber = globalInovationNumber++;
+		Gene newGene = new Gene(inNode, outNode, weight, true, innovationNumber);
+		genome.addGene(newGene);
+		return true;
 	}
 	
 	private void addRandomNodeToGenome(Genome genome)
@@ -60,14 +116,11 @@ public abstract class Neat {
 		Node newNode = new Node(nodeNo, NodeType.HIDDEN);
 		int randomGenomeIndex = randomGenerator.getRandomIntWithLimit(genome.genomeSize());
 		Gene newGene1, newGene2;
-		Gene gene = genome.getGene(randomGenomeIndex);
-		double weight1, weight2;
+		Gene randomGene = genome.getGene(randomGenomeIndex);
 		
-		weight1 = randomGenerator.getRandomSignedDouble();
-		weight2 = randomGenerator.getRandomSignedDouble();
-		gene.setEnabledFlag(false);
-		pair1 = new Pair<Node, Node>(gene.getInNode(), newNode);
-		pair2 = new Pair<Node, Node>(newNode, gene.getOutNode());
+		randomGene.setEnabledFlag(false);
+		pair1 = new Pair<Node, Node>(randomGene.getInNode(), newNode);
+		pair2 = new Pair<Node, Node>(newNode, randomGene.getOutNode());
 		if(allExistingGenes.containsKey(pair1))
 			newInnovationNumber1 = allExistingGenes.get(pair1).getInovationNumber();
 		else
@@ -76,15 +129,42 @@ public abstract class Neat {
 			newInnovationNumber2 = allExistingGenes.get(pair2).getInovationNumber();
 		else
 			newInnovationNumber2 = this.globalInovationNumber++;
-		newGene1 = new Gene(gene.getInNode(), newNode, weight1, true, newInnovationNumber1);
-		newGene2 = new Gene(newNode, gene.getOutNode(), weight2, true, newInnovationNumber2);
+		newGene1 = new Gene(randomGene.getInNode(), newNode, randomGene.getWeight(), true, newInnovationNumber1);
+		newGene2 = new Gene(newNode, randomGene.getOutNode(), 1, true, newInnovationNumber2);
 		genome.addGene(newGene1);
 		genome.addGene(newGene2);
 	}
 	
+	private double min(double a, double b)
+	{
+		return a > b ? b : a;
+	}
+	private double max(double a, double b)
+	{
+		return a > b ? a : b;
+	}
+	/*Randomly selecting a gene and mutating it's weights (either randomly or incrementally)*/
 	private void mutateWeights(Genome genome)
 	{
-		
+		RandomGenerator randomGenerator = new RandomGenerator();
+		Boolean[] actions = {true, false};
+		double weight;
+		double probs[] = {Globals.randomlyChangeWeightProbability, 100 - Globals.randomlyChangeWeightProbability};
+		boolean randomlyMutate = (boolean) randomGenerator.probablityBasedAction(actions, probs);
+		int randomGenomeIndex = randomGenerator.getRandomIntWithLimit(genome.genomeSize());
+		Gene randomGene = genome.getGene(randomGenomeIndex);
+
+		if(randomlyMutate)
+			weight = randomGenerator.getRandomSignedDouble();
+		else
+		{
+			Integer[] action = {-1, 1};
+			int delta = (int) randomGenerator.getRandomAction(action);
+			delta *= Globals.weightDelta;
+			weight = randomGene.getWeight() + delta;
+			weight = min(max(weight, Globals.minWeight), Globals.maxWeight);
+		}
+		randomGene.setWeight(weight);
 	}
 	
 	public void mutateGenome(Genome genome)
