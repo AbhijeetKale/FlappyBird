@@ -18,4 +18,10 @@ public class Globals {
 	static double populationSruvivalPercentage = 50;
 	static double minimumPopulation = 5;
 	//Selection
+	
+	//mutation
+	static double weightMutationProbability = 0.6;
+	static double connectionMutationProbability = 0.2;
+	static double nodeMutationProbability = 0.2;
+	//mutation
 }
