@@ -22,4 +22,18 @@ public class Node {
 	{
 		return this.type;
 	}
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		Integer id = (Integer) nodeId;
+		return id.hashCode();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		Node n = (Node) obj;
+		if(n.getNodeId() == this.nodeId)
+			return true;
+		return false;
+	}
 }

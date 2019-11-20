@@ -30,4 +30,17 @@ class Pair<A, B>
 	{
 		return this.data2;
 	}
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return data1.hashCode() ^ data2.hashCode();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		Pair<A, B> p = (Pair<A, B>) obj;
+		if(p.getKey().equals(this.data1) && p.getValue().equals(this.data2))
+			return true;
+		return false;
+	}
 }
