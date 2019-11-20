@@ -1,8 +1,11 @@
 package neat;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import game.Map;
 
 /*Main control class for NEAT algorithm*/
 enum MutationAction
@@ -12,36 +15,107 @@ enum MutationAction
 	NODE
 }
 public abstract class Neat {
-	
 
 	private int globalInovationNumber;
 	/*inNode and outNode to Gene mapping for all existing genes*/
 	private HashMap<Pair<Node, Node>, Gene> allExistingGenes;
-	private ArrayList<Node> inputNodes;
-	private ArrayList<Node> outputNodes;
-	private int initPopulationCount;
 	private ArrayList<Species> speciesList;
-	
+
 	public Neat(int inputNodes, int outputNodes, int initPopulationCount)
 	{
 		this.allExistingGenes = new HashMap<Pair<Node, Node>, Gene>();
 		this.globalInovationNumber = 1;
-		this.inputNodes = new ArrayList<Node>();
-		this.outputNodes = new ArrayList<Node>();
-		this.initPopulationCount = initPopulationCount;
 		this.speciesList = new ArrayList<Species>();
 		initPopulation(inputNodes, outputNodes, initPopulationCount);
 	}
+
 	private void initPopulation(int inputCount, int outputCount, int initPopulationCount)
 	{
+		Species species1 = new Species();
+		Genome genome;
+		Gene gene;
+		int maxConnections = inputCount * outputCount;
+		boolean newInnovationNumber = false;
+		double weight;
+		int innovationNumber;
+		Node tmp;
+		RandomGenerator randomGenerator = new RandomGenerator();
+		Node[] outputNodes, inputNodes;
+		inputNodes = new Node[inputCount];
+		outputNodes = new Node[outputCount];
+		for(int count = 0; count < initPopulationCount; count++)
+		{
+			genome = new Genome();
+			for(int counter = 0; counter < inputCount; counter++)
+			{
+				tmp = new Node(genome.getNodes().size(), NodeType.INPUT);
+				genome.addNode(tmp);
+				inputNodes[counter] = tmp;
+			}
+			for(int counter = 0; counter < outputCount; counter++)
+			{
+				tmp = new Node(genome.getNodes().size(), NodeType.OUTPUT);
+				genome.addNode(tmp);
+				outputNodes[counter] = tmp;
+			}
+			Node inputNode = null, outputNode = null;
+			int connCount = 0;
+			int rand = max(1, randomGenerator.getRandomIntWithLimit(maxConnections));
+			while(connCount < rand)
+			{
+				newInnovationNumber = false;
+				inputNode = (Node) randomGenerator.getRandomAction(inputNodes);
+				outputNode = (Node) randomGenerator.getRandomAction(outputNodes);
+				if(genome.containsGene(inputNode, outputNode))
+					continue;
+				connCount++;
+				weight = randomGenerator.getRandomSignedDouble();
+				Pair<Node, Node> p = new Pair<Node, Node>(inputNode, outputNode);
+				if(allExistingGenes.containsKey(p))
+					innovationNumber = allExistingGenes.get(p).getInovationNumber();
+				else
+				{
+					innovationNumber = this.globalInovationNumber++;
+					newInnovationNumber = true;
+				}
+				gene = new Gene(inputNode, outputNode, weight, true, innovationNumber);
+				genome.addGene(gene);
+				if(newInnovationNumber)
+					allExistingGenes.put(p, gene);
+			}
+			species1.addGenome(genome);
+		}
+		speciesList.add(species1);
 		
+		/*Testing */
+		Genome test;
+		SortedListIterator<Genome> genomeIterator = species1.iterator();
+		while(genomeIterator.hasNext())
+		{
+			test = genomeIterator.next();
+			Gene testGene;
+			SortedListIterator<Gene> geneIterator = test.iterator();
+			System.out.println("Genome: ");
+			while(geneIterator.hasNext())
+			{
+				testGene = geneIterator.next();
+				System.out.println(testGene.toString());
+			}
+			System.out.println();
+		}
 	}
+
 	public void setSpeciationParameters(double deltaThreshold, double c1, double c2, double c3)
 	{
 		Globals.delta_Threshhold = deltaThreshold;
 		Globals.delta_C1 = c1;
 		Globals.delta_C2 = c2;
 		Globals.delta_C3 = c3;
+	}
+
+	public void simulateGeneration()
+	{
+		
 	}
 
 	public void setSelectionParameters(double populationSurvivalPercentage, int minimumPopulation)
@@ -66,7 +140,7 @@ public abstract class Neat {
 		Globals.minWeight = minWeight;
 		Globals.maxWeight = maxWeight;
 	}
-	
+
 	private boolean addRandomConnectionToGenome(Genome genome)
 	{
 		Node inNode = null, outNode = null;
@@ -75,6 +149,7 @@ public abstract class Neat {
 		Node[] nodes = (Node[]) genome.getNodes().values().toArray();
 		double weight = randomGenerator.getRandomSignedDouble();
 		int innovationNumber, count = 0;
+		boolean newInnovationNumber = false;
 		while(true)
 		{
 			type = NodeType.INPUT;
@@ -101,12 +176,17 @@ public abstract class Neat {
 		if(allExistingGenes.containsKey(pair))
 			innovationNumber = allExistingGenes.get(pair).getInovationNumber();
 		else
+		{
 			innovationNumber = globalInovationNumber++;
+			newInnovationNumber = true;
+		}
 		Gene newGene = new Gene(inNode, outNode, weight, true, innovationNumber);
 		genome.addGene(newGene);
+		if(newInnovationNumber)
+			allExistingGenes.put(new Pair<Node, Node>(inNode, outNode), newGene);
 		return true;
 	}
-	
+
 	private void addRandomNodeToGenome(Genome genome)
 	{
 		RandomGenerator randomGenerator = new RandomGenerator();
@@ -134,7 +214,14 @@ public abstract class Neat {
 		genome.addGene(newGene1);
 		genome.addGene(newGene2);
 	}
-	
+	private int min(int a, int b)
+	{
+		return a > b ? b : a;
+	}
+	private int max(int a, int b)
+	{
+		return a > b ? a : b;
+	}
 	private double min(double a, double b)
 	{
 		return a > b ? b : a;
@@ -166,7 +253,7 @@ public abstract class Neat {
 		}
 		randomGene.setWeight(weight);
 	}
-	
+
 	public void mutateGenome(Genome genome)
 	{
 		RandomGenerator randomGenerator = new RandomGenerator();
@@ -176,14 +263,14 @@ public abstract class Neat {
 		action = (MutationAction) randomGenerator.probablityBasedAction(possibleActions, mutationProbs);
 		switch(action)
 		{
-		case WEIGHT:
-			mutateWeights(genome);
-			break;
-		case CONNECTION:
-			addRandomConnectionToGenome(genome);
-			break;
 		case NODE:
 			addRandomNodeToGenome(genome);
+			break;
+		case CONNECTION:
+			if(addRandomConnectionToGenome(genome))
+				break;
+		case WEIGHT:
+			mutateWeights(genome);
 			break;
 		}
 	}
@@ -213,5 +300,5 @@ public abstract class Neat {
 		}
 	}
 	
-	public abstract void calculateFitnessScore();
+	public abstract double calculateFitnessScore();
 }

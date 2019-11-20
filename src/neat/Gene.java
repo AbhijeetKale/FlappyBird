@@ -43,4 +43,14 @@ public class Gene {
 	{
 		return this.enabled;
 	}
+	public String toString()
+	{
+		String str = "";
+		str += "{inNode = " + inNode.getNodeId() + " NodeType = " + inNode.getNodeType();
+		str += ", outNode = " + outNode.getNodeId() + " NodeType = " + outNode.getNodeType();
+		str += ", weight = " + weight;
+		str += ", enabled = " + enabled;
+		str += ", inovationNumber = " + inovationNumber + "}";
+		return str;
+	}
 }
