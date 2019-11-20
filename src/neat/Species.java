@@ -78,6 +78,12 @@ public class Species implements Comparator<Genome>{
 		this.speciesPopulation.removeFromIndexToEnd(fromIndex);
 		this.representativeGenome = speciesPopulation.getFirstElement();
 	}
+	
+	public SortedListIterator<Genome> iterator()
+	{
+		return this.speciesPopulation.iterator();
+	}
+	
 	@Override
 	public int compare(Genome arg0, Genome arg1) {
 		// TODO Auto-generated method stub
