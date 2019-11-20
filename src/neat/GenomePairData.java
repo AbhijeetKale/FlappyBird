@@ -1,7 +1,6 @@
 package neat;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /*Can be used for Crossover and speciation purposes*/
 
