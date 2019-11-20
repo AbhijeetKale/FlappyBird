@@ -3,7 +3,6 @@ package neat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 
 /*Represent the list of Genes/Connections in a Neural net, basically the neural itself*/
@@ -115,7 +114,10 @@ public class Genome implements Comparator<Gene>{
 	{
 		return this.genome.getData(index);
 	}
-	
+	public void addNode(Node node)
+	{
+		nodes.put(node, node);
+	}
 	public HashMap<Node, Node> getNodes()
 	{
 		return this.nodes;
