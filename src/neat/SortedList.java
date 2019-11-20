@@ -29,6 +29,7 @@ public class SortedList<E> {
 		this.head = null;
 		this.tail = null;
 		this.size = 0;
+		this.comparaTor = comparaTor;
 	}
 	/*Adding elements in a sorted manner*/
 	public void add(E data)
