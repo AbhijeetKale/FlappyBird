@@ -10,6 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
 
+import neat.Neat;
+import neat.RandomGenerator;
+
 public class Main {
 	
 	private Canvas canvas = null;
@@ -78,9 +81,19 @@ public class Main {
 	}
 	public static void main(String[] args)
 	{
+		/*
 		Main m = new Main();
 		m.init();
 		m.game();
 		m.clearWindow();
+		*/
+		Neat n = new Neat(3, 2, 10) {
+			@Override
+			public double calculateFitnessScore() {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+		};
+		n.testing();
 	}
 }

@@ -1,8 +1,8 @@
 package neat;
 /*Has the info of each connection in the neural net*/
 public class Gene {
-	private final Node inNode;
-	private final Node outNode;
+	private final Node inNode;		//connection which goes into a node
+	private final Node outNode;		// connection which comes out of a node
 	private double weight;
 	private boolean enabled; // true/false
 	private final int inovationNumber;
@@ -46,8 +46,8 @@ public class Gene {
 	public String toString()
 	{
 		String str = "";
-		str += "{inNode = " + inNode.getNodeId() + " NodeType = " + inNode.getNodeType();
-		str += ", outNode = " + outNode.getNodeId() + " NodeType = " + outNode.getNodeType();
+		str += "{outNode = " + outNode.getNodeId() + " NodeType = " + outNode.getNodeType();
+		str += ", inNode = " + inNode.getNodeId() + " NodeType = " + inNode.getNodeType();
 		str += ", weight = " + weight;
 		str += ", enabled = " + enabled;
 		str += ", inovationNumber = " + inovationNumber + "}";

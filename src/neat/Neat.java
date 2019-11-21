@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-
-import game.Map;
 
 /*Main control class for NEAT algorithm*/
 enum MutationAction
@@ -18,7 +15,7 @@ enum MutationAction
 public abstract class Neat {
 
 	private int globalInovationNumber;
-	/*inNode and outNode to Gene mapping for all existing genes*/
+	/*inNode (Node connection is going to) and outNode (Node connection is coming out of) to Gene mapping for all existing genes*/
 	private HashMap<Pair<Node, Node>, Gene> allExistingGenes;
 	private ArrayList<Species> speciesList;
 
@@ -29,7 +26,35 @@ public abstract class Neat {
 		this.speciesList = new ArrayList<Species>();
 		initPopulation(inputNodes, outputNodes, initPopulationCount);
 	}
-
+	public void printAllSpecies()
+	{
+		Iterator<Species> speciesIterator = speciesList.iterator();
+		/*Testing */
+		Genome test;
+		int count = 1, counter;
+		while(speciesIterator.hasNext())
+		{
+			System.out.println("Species" + count + ":");
+			Species species1 = speciesIterator.next();
+			SortedListIterator<Genome> genomeIterator = species1.iterator();
+			counter = 1;
+			while(genomeIterator.hasNext())
+			{
+				test = genomeIterator.next();
+				Gene testGene;
+				SortedListIterator<Gene> geneIterator = test.iterator();
+				System.out.println("Genome" + counter + ":" );
+				while(geneIterator.hasNext())
+				{
+					testGene = geneIterator.next();
+					System.out.println(testGene.toString());
+				}
+				System.out.println();
+				counter++;
+			}
+			count++;
+		}
+	}
 	private void initPopulation(int inputCount, int outputCount, int initPopulationCount)
 	{
 		Species species1 = new Species();
@@ -67,11 +92,11 @@ public abstract class Neat {
 				newInnovationNumber = false;
 				inputNode = (Node) randomGenerator.getRandomAction(inputNodes);
 				outputNode = (Node) randomGenerator.getRandomAction(outputNodes);
-				if(genome.containsGene(inputNode, outputNode))
+				if(genome.containsGene(outputNode, inputNode))
 					continue;
 				connCount++;
 				weight = randomGenerator.getRandomSignedDouble();
-				Pair<Node, Node> p = new Pair<Node, Node>(inputNode, outputNode);
+				Pair<Node, Node> p = new Pair<Node, Node>(outputNode, inputNode);
 				if(allExistingGenes.containsKey(p))
 					innovationNumber = allExistingGenes.get(p).getInovationNumber();
 				else
@@ -79,7 +104,7 @@ public abstract class Neat {
 					innovationNumber = this.globalInovationNumber++;
 					newInnovationNumber = true;
 				}
-				gene = new Gene(inputNode, outputNode, weight, true, innovationNumber);
+				gene = new Gene(outputNode, inputNode, weight, true, innovationNumber);
 				genome.addGene(gene);
 				if(newInnovationNumber)
 					allExistingGenes.put(p, gene);
@@ -87,25 +112,19 @@ public abstract class Neat {
 			species1.addGenome(genome);
 		}
 		speciesList.add(species1);
-		
-		/*Testing */
-		Genome test;
-		SortedListIterator<Genome> genomeIterator = species1.iterator();
-		while(genomeIterator.hasNext())
-		{
-			test = genomeIterator.next();
-			Gene testGene;
-			SortedListIterator<Gene> geneIterator = test.iterator();
-			System.out.println("Genome: ");
-			while(geneIterator.hasNext())
-			{
-				testGene = geneIterator.next();
-				System.out.println(testGene.toString());
-			}
-			System.out.println();
-		}
+		printAllSpecies();
 	}
-
+	public void testing()
+	{
+		SortedListIterator<Genome> iterator = speciesList.get(0).iterator();
+		while(iterator.hasNext())
+		{
+			Genome genome = iterator.next();
+			addRandomConnectionToGenome(genome);
+		}
+		System.out.println("************Random Connection added Testing**************");
+		printAllSpecies();
+	}
 	public void setSpeciationParameters(double deltaThreshold, double c1, double c2, double c3)
 	{
 		Globals.delta_Threshhold = deltaThreshold;
@@ -145,7 +164,6 @@ public abstract class Neat {
 	private boolean addRandomConnectionToGenome(Genome genome)
 	{
 		Node inNode = null, outNode = null;
-		NodeType type;
 		RandomGenerator randomGenerator = new RandomGenerator();
 		ArrayList<Node> inNodes = new ArrayList<Node>();
 		ArrayList<Node> outNodes = new ArrayList<Node>();

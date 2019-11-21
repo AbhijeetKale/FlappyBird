@@ -136,14 +136,27 @@ public class Genome implements Comparator<Gene>{
 		}
 		return false;
 	}
-	
-	@Override
-	public int compare(Gene arg0, Gene arg1) {
+	private int compareGenes(Gene arg0, Gene arg1) throws Exception
+	{
 		// TODO Auto-generated method stub
 		if(arg0.getInovationNumber() < arg1.getInovationNumber())
 			return -1;
 		else if(arg0.getInovationNumber() > arg1.getInovationNumber())
 			return 1;
+		else
+			throw new Exception("Connection already present");
+	}
+	@Override
+	public int compare(Gene arg0, Gene arg1)
+	{
+		try
+		{
+			return compareGenes(arg0, arg1);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return 0;
 	}
 }
