@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import game.Map;
 
@@ -146,26 +147,25 @@ public abstract class Neat {
 		Node inNode = null, outNode = null;
 		NodeType type;
 		RandomGenerator randomGenerator = new RandomGenerator();
-		Node[] nodes = (Node[]) genome.getNodes().values().toArray();
+		ArrayList<Node> inNodes = new ArrayList<Node>();
+		ArrayList<Node> outNodes = new ArrayList<Node>();
 		double weight = randomGenerator.getRandomSignedDouble();
 		int innovationNumber, count = 0;
 		boolean newInnovationNumber = false;
+		Collection<Node> nodes =  genome.getNodes().values();
+		Iterator<Node> nodeIterator = nodes.iterator();
+		while(nodeIterator.hasNext())
+		{
+			Node tmp = nodeIterator.next();
+			if(tmp.getNodeType() == NodeType.HIDDEN || tmp.getNodeType() == NodeType.INPUT)
+					outNodes.add(tmp);
+			else
+				inNodes.add(tmp);
+		}
 		while(true)
 		{
-			type = NodeType.INPUT;
-			while(type == NodeType.INPUT)
-			{
-				inNode = (Node) randomGenerator.getRandomAction(nodes);
-				type = inNode.getNodeType();
-			}
-			type = NodeType.OUTPUT;
-			int id = inNode.getNodeId();
-			while(type == NodeType.OUTPUT || id == inNode.getNodeId())
-			{
-				outNode = (Node) randomGenerator.getRandomAction(nodes);
-				type = outNode.getNodeType();
-				id = outNode.getNodeId();
-			}
+			inNode = (Node) randomGenerator.getRandomAction(inNodes);
+			outNode = (Node) randomGenerator.getRandomAction(outNodes);
 			if(!genome.containsGene(inNode, outNode))
 				break;
 			if(count > 10)
