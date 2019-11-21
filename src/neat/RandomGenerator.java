@@ -1,5 +1,7 @@
 package neat;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class RandomGenerator {
@@ -46,7 +48,12 @@ public class RandomGenerator {
 		int i = abs(r.nextInt()) % list.length;
 		return list[i];
 	}
-	
+	public Object getRandomAction(ArrayList<? extends Object> list)
+	{
+		Random r = new Random();
+		int i = abs(r.nextInt()) % list.size();
+		return list.get(i);
+	}
 	public int getRandomIntWithLimit(int n)
 	{
 		int i = abs(random.nextInt());
