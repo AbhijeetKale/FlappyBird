@@ -120,7 +120,7 @@ public abstract class Neat {
 		while(iterator.hasNext())
 		{
 			Genome genome = iterator.next();
-			addRandomConnectionToGenome(genome);
+			addRandomNodeToGenome(genome);
 		}
 		System.out.println("************Random Connection added Testing**************");
 		printAllSpecies();
@@ -215,6 +215,7 @@ public abstract class Neat {
 	{
 		RandomGenerator randomGenerator = new RandomGenerator();
 		int newInnovationNumber1, newInnovationNumber2;
+		int newGeneFlag = 0;
 		Pair<Node, Node> pair1, pair2;
 		int nodeNo = genome.getNodes().size();
 		Node newNode = new Node(nodeNo, NodeType.HIDDEN);
@@ -228,15 +229,25 @@ public abstract class Neat {
 		if(allExistingGenes.containsKey(pair1))
 			newInnovationNumber1 = allExistingGenes.get(pair1).getInovationNumber();
 		else
+		{
 			newInnovationNumber1 = this.globalInovationNumber++;
+			newGeneFlag |= 1;
+		}
 		if(allExistingGenes.containsKey(pair2))
 			newInnovationNumber2 = allExistingGenes.get(pair2).getInovationNumber();
 		else
+		{
 			newInnovationNumber2 = this.globalInovationNumber++;
+			newGeneFlag |= 1 << 1;
+		}
 		newGene1 = new Gene(randomGene.getInNode(), newNode, randomGene.getWeight(), true, newInnovationNumber1);
 		newGene2 = new Gene(newNode, randomGene.getOutNode(), 1, true, newInnovationNumber2);
 		genome.addGene(newGene1);
 		genome.addGene(newGene2);
+		if((newGeneFlag & 1) == 1)
+			allExistingGenes.put(pair1, newGene1);
+		if((newGeneFlag >> 1) == 1)
+			allExistingGenes.put(pair2, newGene2);
 	}
 	private int min(int a, int b)
 	{
