@@ -157,16 +157,22 @@ public abstract class Neat {
 		while(nodeIterator.hasNext())
 		{
 			Node tmp = nodeIterator.next();
-			if(tmp.getNodeType() == NodeType.HIDDEN || tmp.getNodeType() == NodeType.INPUT)
+			if(tmp.getNodeType() == NodeType.INPUT)
 					outNodes.add(tmp);
-			else
+			else if(tmp.getNodeType() == NodeType.OUTPUT)
 				inNodes.add(tmp);
+			else if(tmp.getNodeType() == NodeType.HIDDEN)
+			{
+				inNodes.add(tmp);
+				outNodes.add(tmp);
+			}
 		}
 		while(true)
 		{
 			inNode = (Node) randomGenerator.getRandomAction(inNodes);
 			outNode = (Node) randomGenerator.getRandomAction(outNodes);
-			if(!genome.containsGene(inNode, outNode))
+			if((inNode.getNodeType() != outNode.getNodeType()) 
+				&& (!genome.containsGene(inNode, outNode)))
 				break;
 			if(count > 10)
 				return false;
