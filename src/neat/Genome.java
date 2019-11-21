@@ -49,17 +49,17 @@ public class Genome implements Comparator<Gene>{
 		ArrayList<Gene> excessGenes = null, excessGenes2 = null;
 		RandomGenerator randomGenerator = new RandomGenerator();
 		
-		if(parent1.getFitnessScore() == parent1.getFitnessScore())
+		if(parent1.getFitnessScore() == parent2.getFitnessScore())
 		{
 			excessGenes = pairData.getExcessGenes1();
 			excessGenes2 = pairData.getExcessGenes2();
 		}
-		else if(parent1.getFitnessScore() < parent1.getFitnessScore())
+		else if(parent1.getFitnessScore() > parent2.getFitnessScore())
 		{
 			excessGenes = pairData.getExcessGenes1();		
 			excessGenes2 = null;
 		}
-		else if(parent1.getFitnessScore() < parent1.getFitnessScore())
+		else if(parent1.getFitnessScore() < parent2.getFitnessScore())
 		{
 			excessGenes = pairData.getExcessGenes2();
 			excessGenes2 = null;
