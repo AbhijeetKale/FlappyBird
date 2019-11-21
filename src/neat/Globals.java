@@ -25,7 +25,7 @@ public class Globals {
 	static double connectionMutationProbability = 20;
 	static double nodeMutationProbability = 20;
 	static double randomlyChangeWeightProbability = 10;
-	static double weightDelta = 0.1;
+	static double weightDelta = 0.01;
 	//mutation
 	
 	//Gene Params

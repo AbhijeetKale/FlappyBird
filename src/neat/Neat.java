@@ -120,9 +120,9 @@ public abstract class Neat {
 		while(iterator.hasNext())
 		{
 			Genome genome = iterator.next();
-			addRandomNodeToGenome(genome);
+			mutateWeights(genome);
 		}
-		System.out.println("************Random Connection added Testing**************");
+		System.out.println("************Weights Mutation Testing**************");
 		printAllSpecies();
 	}
 	public void setSpeciationParameters(double deltaThreshold, double c1, double c2, double c3)
@@ -249,22 +249,7 @@ public abstract class Neat {
 		if((newGeneFlag >> 1) == 1)
 			allExistingGenes.put(pair2, newGene2);
 	}
-	private int min(int a, int b)
-	{
-		return a > b ? b : a;
-	}
-	private int max(int a, int b)
-	{
-		return a > b ? a : b;
-	}
-	private double min(double a, double b)
-	{
-		return a > b ? b : a;
-	}
-	private double max(double a, double b)
-	{
-		return a > b ? a : b;
-	}
+
 	/*Randomly selecting a gene and mutating it's weights (either randomly or incrementally)*/
 	private void mutateWeights(Genome genome)
 	{
@@ -281,7 +266,7 @@ public abstract class Neat {
 		else
 		{
 			Integer[] action = {-1, 1};
-			int delta = (int) randomGenerator.getRandomAction(action);
+			double delta = (int) randomGenerator.getRandomAction(action);
 			delta *= Globals.weightDelta;
 			weight = randomGene.getWeight() + delta;
 			weight = min(max(weight, Globals.minWeight), Globals.maxWeight);
@@ -334,6 +319,21 @@ public abstract class Neat {
 			}
 		}
 	}
-	
+	private int min(int a, int b)
+	{
+		return a > b ? b : a;
+	}
+	private int max(int a, int b)
+	{
+		return a > b ? a : b;
+	}
+	private double min(double a, double b)
+	{
+		return a > b ? b : a;
+	}
+	private double max(double a, double b)
+	{
+		return a > b ? a : b;
+	}
 	public abstract double calculateFitnessScore();
 }
