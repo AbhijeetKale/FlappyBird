@@ -30,13 +30,7 @@ public class Species implements Comparator<Genome>{
 	private double abs(double s)
 	{
 		if(s < 0)
-			s += -1;
-		return s;
-	}
-	private int abs(int s)
-	{
-		if(s < 0)
-			s += -1;
+			s *= -1;
 		return s;
 	}
 	public boolean genomeBelongsToSpecies(Genome genome)
@@ -47,7 +41,7 @@ public class Species implements Comparator<Genome>{
 		}
 		double delta;
 		double avgWeightDifference = 0;
-		int disjointGenesDifference, excessGenesDifference;
+		int disjointGenes, excessGenes;
 		GenomePairData genomePairData = new GenomePairData(this.representativeGenome, genome);
 		ArrayList<Pair<Gene, Gene>> matchingGenomes = genomePairData.getMatchingGenes();
 		Pair<Gene, Gene> match;
@@ -58,9 +52,9 @@ public class Species implements Comparator<Genome>{
 			avgWeightDifference += abs(match.getKey().getWeight() + match.getValue().getWeight());
 		}
 		avgWeightDifference = avgWeightDifference / matchingGenomes.size();
-		disjointGenesDifference = abs(genomePairData.getDisjointGenes1().size() - genomePairData.getDisjointGenes2().size());
-		excessGenesDifference = abs(genomePairData.getExcessGenes1().size() - genomePairData.getExcessGenes2().size());
-		delta = Globals.delta_C1 * (double)excessGenesDifference + Globals.delta_C2 * (double)disjointGenesDifference;
+		disjointGenes= genomePairData.getDisjointGenes2().size();
+		excessGenes= genomePairData.getExcessGenes2().size();
+		delta = Globals.delta_C1 * (double)excessGenes + Globals.delta_C2 * (double)disjointGenes;
 		if(this.speciesPopulation.size() > Globals.population_Normalization_Threshold)
 			delta = delta / this.speciesPopulation.size();
 		delta += Globals.delta_C3 * avgWeightDifference;
@@ -83,7 +77,10 @@ public class Species implements Comparator<Genome>{
 	{
 		return this.speciesPopulation.iterator();
 	}
-	
+	public Genome getGenome(int idx)
+	{
+		return this.speciesPopulation.getData(idx);
+	}
 	@Override
 	public int compare(Genome arg0, Genome arg1) {
 		// TODO Auto-generated method stub
