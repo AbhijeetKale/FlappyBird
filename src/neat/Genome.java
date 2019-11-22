@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 /*Represent the list of Genes/Connections in a Neural net, basically the neural itself*/
 public class Genome implements Comparator<Gene>{
@@ -29,9 +30,9 @@ public class Genome implements Comparator<Gene>{
 	public void addGene(Gene g)
 	{
 		if(!nodes.containsKey(g.getInNode()))
-			nodes.put(g.getInNode(), g.getInNode());
+			addNode(g.getInNode());
 		if(!nodes.containsKey(g.getOutNode()))
-			nodes.put(g.getOutNode(), g.getOutNode());
+			addNode(g.getOutNode());
 		this.genome.add(g);
 	}
 	public double getFitnessScore()
