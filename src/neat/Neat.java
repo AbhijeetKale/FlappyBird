@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 /*Main control class for NEAT algorithm*/
 enum MutationAction
@@ -18,13 +19,29 @@ public abstract class Neat {
 	/*inNode (Node connection is going to) and outNode (Node connection is coming out of) to Gene mapping for all existing genes*/
 	private HashMap<Pair<Node, Node>, Gene> allExistingGenes;
 	private ArrayList<Species> speciesList;
+	private int inputNodeCount;
+	private int outputNodeCount;
 
 	public Neat(int inputNodes, int outputNodes, int initPopulationCount)
 	{
 		this.allExistingGenes = new HashMap<Pair<Node, Node>, Gene>();
 		this.globalInovationNumber = 1;
 		this.speciesList = new ArrayList<Species>();
+		this.inputNodeCount = inputNodes;
+		this.outputNodeCount = outputNodes;
 		initPopulation(inputNodes, outputNodes, initPopulationCount);
+	}
+	public void printGenome(Genome genome)
+	{
+		Gene testGene;
+		SortedListIterator<Gene> geneIterator = genome.iterator();
+		System.out.println("Genome" + ": Fitness = " + genome.getFitnessScore());
+		while(geneIterator.hasNext())
+		{
+			testGene = geneIterator.next();
+			System.out.println(testGene.toString());
+		}
+		System.out.println();
 	}
 	public void printAllSpecies()
 	{
@@ -41,19 +58,16 @@ public abstract class Neat {
 			while(genomeIterator.hasNext())
 			{
 				test = genomeIterator.next();
-				Gene testGene;
-				SortedListIterator<Gene> geneIterator = test.iterator();
-				System.out.println("Genome" + counter + ":" );
-				while(geneIterator.hasNext())
-				{
-					testGene = geneIterator.next();
-					System.out.println(testGene.toString());
-				}
-				System.out.println();
+				System.out.print(counter + ") ");
+				printGenome(test);
 				counter++;
 			}
 			count++;
 		}
+	}
+	public void testing()
+	{
+
 	}
 	private void initPopulation(int inputCount, int outputCount, int initPopulationCount)
 	{
@@ -109,21 +123,10 @@ public abstract class Neat {
 				if(newInnovationNumber)
 					allExistingGenes.put(p, gene);
 			}
+			genome.setFitnessScore(this.calculateFitnessScore(genome));
 			species1.addGenome(genome);
 		}
 		speciesList.add(species1);
-		printAllSpecies();
-	}
-	public void testing()
-	{
-		SortedListIterator<Genome> iterator = speciesList.get(0).iterator();
-		while(iterator.hasNext())
-		{
-			Genome genome = iterator.next();
-			mutateWeights(genome);
-		}
-		System.out.println("************Weights Mutation Testing**************");
-		printAllSpecies();
 	}
 	public void setSpeciationParameters(double deltaThreshold, double c1, double c2, double c3)
 	{
@@ -135,9 +138,17 @@ public abstract class Neat {
 
 	public void simulateGeneration()
 	{
-		
+		/*Speciation*/
+		/*Selection*/
+		/*CrossOver*/
+		/*Mutation*/
+		/*Fitness Calculation*/
 	}
-
+	private static double sigmoid(double x)
+	{
+	    return (1/( 1 + Math.pow(Math.E,(-1*x))));
+	}
+	
 	public void setSelectionParameters(double populationSurvivalPercentage, int minimumPopulation)
 	{
 		Globals.populationSruvivalPercentage = populationSurvivalPercentage;
@@ -154,7 +165,7 @@ public abstract class Neat {
 		Globals.randomlyChangeWeightProbability = randomlyChangeWeightProbability;
 		Globals.weightDelta = weightDelta;
 	}
-	
+
 	public void setConnectionParams(double minWeight, double maxWeight)
 	{
 		Globals.minWeight = minWeight;
@@ -176,7 +187,7 @@ public abstract class Neat {
 		{
 			Node tmp = nodeIterator.next();
 			if(tmp.getNodeType() == NodeType.INPUT)
-					outNodes.add(tmp);
+				outNodes.add(tmp);
 			else if(tmp.getNodeType() == NodeType.OUTPUT)
 				inNodes.add(tmp);
 			else if(tmp.getNodeType() == NodeType.HIDDEN)
@@ -210,7 +221,7 @@ public abstract class Neat {
 			allExistingGenes.put(new Pair<Node, Node>(inNode, outNode), newGene);
 		return true;
 	}
-
+	/*Randomly selecting a genome and adding node between 2 nodes*/
 	private void addRandomNodeToGenome(Genome genome)
 	{
 		RandomGenerator randomGenerator = new RandomGenerator();
@@ -274,7 +285,7 @@ public abstract class Neat {
 		randomGene.setWeight(weight);
 	}
 
-	public void mutateGenome(Genome genome)
+	private void mutateGenome(Genome genome)
 	{
 		RandomGenerator randomGenerator = new RandomGenerator();
 		double[] mutationProbs = {Globals.weightMutationProbability, Globals.connectionMutationProbability, Globals.nodeMutationProbability};
@@ -295,7 +306,7 @@ public abstract class Neat {
 		}
 	}
 	
-	public void selection()
+	private void selection()
 	{
 		Iterator<Species> i = speciesList.iterator();
 		Species s;
@@ -307,9 +318,10 @@ public abstract class Neat {
 			if(population > Globals.minimumPopulation)
 			{
 				population = (int) (population * Globals.populationSruvivalPercentage) / 100;
+				population = min(Globals.minimumPopulation, population);
 				try
 				{
-					s.removeFromIndexToEnd(population + 1);
+					s.removeFromIndexToEnd(population);
 				}
 				catch(IndexOutOfBoundsException e)
 				{
@@ -321,7 +333,7 @@ public abstract class Neat {
 	}
 	private int min(int a, int b)
 	{
-		return a > b ? b : a;
+		return a < b ? a : b;
 	}
 	private int max(int a, int b)
 	{
@@ -335,5 +347,5 @@ public abstract class Neat {
 	{
 		return a > b ? a : b;
 	}
-	public abstract double calculateFitnessScore();
+	public abstract double calculateFitnessScore(Genome genome);
 }

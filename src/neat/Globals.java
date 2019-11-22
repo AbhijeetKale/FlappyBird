@@ -17,13 +17,13 @@ public class Globals {
 	
 	//Selection
 	static double populationSruvivalPercentage = 50;
-	static double minimumPopulation = 5;
+	static int minimumPopulation = 5;
 	//Selection
 	
 	//mutation
-	static double weightMutationProbability = 60;
-	static double connectionMutationProbability = 20;
-	static double nodeMutationProbability = 20;
+	static double weightMutationProbability = 70;
+	static double connectionMutationProbability = 15;
+	static double nodeMutationProbability = 15;
 	static double randomlyChangeWeightProbability = 10;
 	static double weightDelta = 0.01;
 	//mutation
@@ -32,4 +32,10 @@ public class Globals {
 	static double minWeight = -1;
 	static double maxWeight = 1;
 	//Gene Params
+	
+	
+	//Global settings
+	//value assigned to node if activation function has not yet been calculated for them
+	static final int nodeActivationUnset = 100;
+	//Global settings
 }

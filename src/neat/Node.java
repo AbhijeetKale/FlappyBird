@@ -8,11 +8,12 @@ enum NodeType
 public class Node {
 	private int nodeId;
 	private NodeType type;
-	
+	private double activationValue;
 	public Node(int id, NodeType type)
 	{
 		this.nodeId = id;
 		this.type = type;
+		this.activationValue = Globals.nodeActivationUnset;
 	}
 	public int getNodeId()
 	{
@@ -22,14 +23,27 @@ public class Node {
 	{
 		return this.type;
 	}
+	
+	public void setActivationValue(double value)
+	{
+		this.activationValue = value;
+	}
+
+	public double getActivationValue()
+	{
+		return activationValue;
+	}
+	
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		// TODO Auto-generated method stub
 		Integer id = (Integer) nodeId;
 		return id.hashCode();
 	}
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		// TODO Auto-generated method stub
 		Node n = (Node) obj;
 		if(n.getNodeId() == this.nodeId)
