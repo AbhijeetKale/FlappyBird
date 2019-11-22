@@ -10,6 +10,9 @@ import java.util.Iterator;
 
 import javax.swing.JPanel;
 
+import neat.Genome;
+import neat.InCorrectInputException;
+import neat.Neat;
 import others.Mutex;
 
 	
@@ -23,7 +26,8 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	private int velocity = 0;
 	private Thread animator;
 	private CustomList<Pipe> pipesInView;
-
+	private Genome genome;
+	private Neat neat;
 	public Bird(int height, int width)
 	{
 		this.width = width;
@@ -59,7 +63,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		animator.start();
 	}
 	/*Detect collision between bird and pipes*/
-	private boolean Collision(Bird b)
+	private boolean Collision()
 	{
 		Iterator<Pipe> iterator = pipesInView.iterator();
 		while(iterator.hasNext())
@@ -68,9 +72,9 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 			int y_diff = GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP;
 			int y_diff1 = y_diff + GlobalVariables.GAP
 						  -GlobalVariables.BIRD_SIZE + GlobalVariables.PIPE_PLACEMENT_ADJUSTMENT;
-			if(b.y < y_diff || b.y > y_diff1)
+			if(this.y < y_diff || this.y > y_diff1)
 			{
-				int x_diff = p.getPositionX() - b.x;
+				int x_diff = p.getPositionX() - this.x;
 				if(x_diff > 0 && x_diff < GlobalVariables.BIRD_SIZE)
 				{
 					return true;
@@ -92,7 +96,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	/*Bird propagation function*/
 	private void cycle()
 	{
-		if(Collision(this))
+		if(Collision())
 		{
 			color = "0xff0000";
 			GlobalVariables.isBirdAlive = false;

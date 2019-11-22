@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
 
+import neat.Genome;
 import neat.Neat;
 import neat.RandomGenerator;
 
@@ -19,7 +20,7 @@ public class Main {
 	private Bird bird;
 	private Map map;
 	private JPanel container;
-	public void init()
+	public Main()
 	{
 		container = new JPanel();
 		container.setLayout(new OverlayLayout(container));
@@ -69,8 +70,6 @@ public class Main {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		/*Game ends*/
-		System.out.println("Game ended");
 	}
 	public void clearWindow()
 	{
@@ -82,16 +81,18 @@ public class Main {
 	public static void main(String[] args)
 	{
 		/*
-		Main m = new Main();
-		m.init();
-		m.game();
-		m.clearWindow();
+		 * Using 3 different inputs to neat:
+		 * Input1: y displacement between bird and pipe gap
+		 * Input2: x distance between bird and pipe
+		 * Input3: Velocity of bird
+		 * Input4: x speed
+		 * INPUT5: Acceleration
 		*/
 		Neat n = new Neat(3, 2, 10) {
 			@Override
-			public double calculateFitnessScore() {
+			public double calculateFitnessScore(Genome genome) {
 				// TODO Auto-generated method stub
-				return 0;
+				return new RandomGenerator().getRandomIntWithLimit(100);
 			}
 		};
 		n.testing();

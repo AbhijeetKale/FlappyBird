@@ -34,4 +34,10 @@ public class GlobalVariables {
 	
 	static String osName;
 	static boolean animationSync = false;
+	
+	
+	/*Neat specific configs*/
+	static final int inputCounts = 5;
+	static final int outputCounts = 1;
+	
 }
