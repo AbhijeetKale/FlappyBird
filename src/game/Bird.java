@@ -7,11 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Iterator;
-
 import javax.swing.JPanel;
-
 import neat.Genome;
-import neat.InCorrectInputException;
 import neat.Neat;
 import others.Mutex;
 

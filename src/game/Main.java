@@ -95,6 +95,7 @@ public class Main {
 				return new RandomGenerator().getRandomIntWithLimit(100);
 			}
 		};
-		n.testing();
+		double[] input = {4, 2, 3};
+		n.testing(input);
 	}
 }

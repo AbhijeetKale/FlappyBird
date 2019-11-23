@@ -8,12 +8,10 @@ enum NodeType
 public class Node {
 	private int nodeId;
 	private NodeType type;
-	private double activationValue;
 	public Node(int id, NodeType type)
 	{
 		this.nodeId = id;
 		this.type = type;
-		this.activationValue = Globals.nodeActivationUnset;
 	}
 	public int getNodeId()
 	{
@@ -23,17 +21,6 @@ public class Node {
 	{
 		return this.type;
 	}
-	
-	public void setActivationValue(double value)
-	{
-		this.activationValue = value;
-	}
-
-	public double getActivationValue()
-	{
-		return activationValue;
-	}
-	
 	@Override
 	public int hashCode()
 	{

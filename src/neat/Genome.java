@@ -160,4 +160,43 @@ public class Genome implements Comparator<Gene>{
 		}
 		return 0;
 	}
+	
+	//dependency graph: 1st element for each element is the node dependent on all following nodes	
+	public ArrayList<listNode<Node>> nodeDependencyGraph()
+	{
+		ArrayList<listNode<Node>> dependencyGraph;
+		dependencyGraph = new ArrayList<listNode<Node>>();
+		Iterator<Node> nodeIterator = this.nodes.keySet().iterator();
+		while(nodeIterator.hasNext())
+		{
+			Node node = nodeIterator.next();
+			dependencyGraph.add(node.getNodeId(), new listNode<Node>(node));;
+		}
+		SortedListIterator<Gene> i = this.genome.iterator();
+		while(i.hasNext())
+		{
+			Gene gene = i.next();
+			listNode<Node> listNode = dependencyGraph.get(gene.getInNode().getNodeId());
+			listNode<Node> tmp = new listNode<Node>(gene.getOutNode());
+			tmp.next = listNode.next;
+			listNode.next = tmp;
+		}
+		return dependencyGraph;
+	}
+	//here weight map is inNode and outNode to weight value
+	public HashMap<Pair<Integer, Integer>, Double> genomeWeightMap()
+	{
+		HashMap<Pair<Integer, Integer>, Double> weightMap;
+		weightMap = new HashMap<Pair<Integer,Integer>, Double>();
+		SortedListIterator<Gene> i = this.genome.iterator();
+		while(i.hasNext())
+		{
+			Gene gene = i.next();
+			int inNodeId = gene.getInNode().getNodeId();
+			int outNodeId = gene.getOutNode().getNodeId();
+			Pair<Integer, Integer> pair = new Pair<Integer, Integer>(inNodeId, outNodeId);
+			weightMap.put(pair, gene.getWeight());
+		}
+		return weightMap;
+	}
 }

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Queue;
 
 /*Main control class for NEAT algorithm*/
 enum MutationAction
@@ -65,9 +66,34 @@ public abstract class Neat {
 			count++;
 		}
 	}
-	public void testing()
+	public void testing(double[] input)
 	{
-
+		printAllSpecies();
+		System.out.println("************************************************************");
+		Species species = this.speciesList.get(0);
+		SortedListIterator<Genome> iterator = species.iterator();
+		List<Double> output = null;
+		Genome genome = null;
+		while(iterator.hasNext())
+		{
+			genome = iterator.next();
+			try
+			{
+				output = this.calculateOutputForGenome(genome, input);
+			}
+			catch(InCorrectInputException e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				printGenome(genome);
+				for(int count = 0; count < output.size(); count++)
+					System.out.print("Ouput" + count + " = " + output.get(count) + " ");
+				System.out.println();
+				System.out.println();
+			}
+		}
 	}
 	private void initPopulation(int inputCount, int outputCount, int initPopulationCount)
 	{
@@ -148,7 +174,69 @@ public abstract class Neat {
 	{
 	    return (1/( 1 + Math.pow(Math.E,(-1*x))));
 	}
+
+	public void setActivationValue(double[] activationValue, 
+									ArrayList<listNode<Node>> nodeDependencyGraph, int nodeId
+									,HashMap<Pair<Integer, Integer>, Double> weightMap)
+									throws InCorrectInputException
+	{
+		double returnValue = Globals.nodeActivationUnset;
+		listNode<Node> data = nodeDependencyGraph.get(nodeId);
+		listNode<Node> tmp = data.next;
+		if(tmp == null && activationValue[nodeId] == Globals.nodeActivationUnset)
+		{
+			activationValue[nodeId] = 0;
+			throw new InCorrectInputException("No input conns to Current Node: " + nodeId);
+		}
+		else
+		{
+			returnValue = 0;
+			while(tmp != null)
+			{
+				Node node = tmp.data;
+				if(activationValue[node.getNodeId()] == Globals.nodeMutationProbability)
+					setActivationValue(activationValue, nodeDependencyGraph, node.getNodeId(), weightMap);
+				double weight = (double) weightMap.get(new Pair<Integer, Integer>(nodeId, node.getNodeId()));
+				returnValue += weight * activationValue[node.getNodeId()];
+				tmp = tmp.next;
+			}
+		}
+		activationValue[nodeId] = sigmoid(returnValue);
+	}
 	
+	public List<Double> calculateOutputForGenome(Genome genome, double[] input) throws InCorrectInputException
+	{
+		if(input.length != this.inputNodeCount)
+			throw new InCorrectInputException("Incorrect number of inputs");
+		List<Double> outputNodes = new ArrayList<Double>();
+		ArrayList<listNode<Node>> nodeDependencyGraph;
+		HashMap<Pair<Integer, Integer>, Double> weightMap;
+		double[] activationValue = new double[genome.getNodes().size()];
+		nodeDependencyGraph = genome.nodeDependencyGraph();
+		weightMap = genome.genomeWeightMap();
+		for(int count = 0; count < activationValue.length; count++)
+			activationValue[count] = Globals.nodeActivationUnset;
+		for(int count = 0; count < this.inputNodeCount; count++)
+			activationValue[count] = input[count];
+		int iSize = this.outputNodeCount + this.inputNodeCount;
+		for(int count = this.inputNodeCount; count < iSize; count++)
+		{
+			if(activationValue[count] == Globals.nodeActivationUnset)
+			{
+				try
+				{
+					setActivationValue(activationValue, nodeDependencyGraph, count, weightMap);
+				}
+				catch(InCorrectInputException e)
+				{
+					e.printStackTrace();
+				}
+
+			}
+			outputNodes.add(activationValue[count]);
+		}
+		return outputNodes;
+	}
 	public void setSelectionParameters(double populationSurvivalPercentage, int minimumPopulation)
 	{
 		Globals.populationSruvivalPercentage = populationSurvivalPercentage;
