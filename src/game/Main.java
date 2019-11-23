@@ -1,18 +1,12 @@
 package game;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
-
 import neat.Genome;
 import neat.Neat;
-import neat.RandomGenerator;
 
 public class Main {
 	
@@ -46,7 +40,7 @@ public class Main {
 		/*Game starts*/
 		canvas.setSize(GlobalVariables.C_WIDTH, GlobalVariables.C_HEIGHT);
 		canvas.setResizable(true);
-		canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		canvas.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		canvas.setVisible(true);
 		canvas.addKeyListener(bird);
 		
@@ -78,24 +72,40 @@ public class Main {
 		container.removeAll();
 		canvas.removeAll();
 	}
+	public void setNeatParamsToBird(Neat n, Genome genome)
+	{
+		bird.setNeatParamsToBird(n, genome);
+	}
+	public void closeWindow()
+	{
+		canvas.dispatchEvent(new WindowEvent(canvas,  WindowEvent.WINDOW_CLOSING));
+	}
 	public static void main(String[] args)
 	{
 		/*
-		 * Using 3 different inputs to neat:
+		 * Using 5 different inputs to neat:
 		 * Input1: y displacement between bird and pipe gap
 		 * Input2: x distance between bird and pipe
 		 * Input3: Velocity of bird
 		 * Input4: x speed
 		 * INPUT5: Acceleration
 		*/
-		Neat n = new Neat(3, 2, 10) {
+		Neat n = new Neat(GlobalVariables.inputCounts, GlobalVariables.outputCounts, 5) {
 			@Override
 			public double calculateFitnessScore(Genome genome) {
 				// TODO Auto-generated method stub
-				return new RandomGenerator().getRandomIntWithLimit(100);
+				Main m = new Main();
+				m.setNeatParamsToBird(this, genome);
+				double currTime = System.currentTimeMillis();
+				m.game();
+				m.closeWindow();
+				this.printGenome(genome);
+				return System.currentTimeMillis() - currTime;
 			}
 		};
-		double[] input = {4, 2, 3};
-		n.testing(input);
+		while(true)
+		{
+			System.out.println("Hello world");
+		}
 	}
 }

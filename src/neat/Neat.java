@@ -66,33 +66,21 @@ public abstract class Neat {
 			count++;
 		}
 	}
-	public void testing(double[] input)
+	public void testing()
 	{
-		printAllSpecies();
-		System.out.println("************************************************************");
-		Species species = this.speciesList.get(0);
-		SortedListIterator<Genome> iterator = species.iterator();
-		List<Double> output = null;
-		Genome genome = null;
-		while(iterator.hasNext())
+		RandomGenerator randomGenerator = new RandomGenerator();
+		Species species = speciesList.get(0);
+		int childIdx = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
+		try
 		{
-			genome = iterator.next();
-			try
-			{
-				output = this.calculateOutputForGenome(genome, input);
-			}
-			catch(InCorrectInputException e)
-			{
-				e.printStackTrace();
-			}
-			finally
-			{
-				printGenome(genome);
-				for(int count = 0; count < output.size(); count++)
-					System.out.print("Ouput" + count + " = " + output.get(count) + " ");
-				System.out.println();
-				System.out.println();
-			}
+			Genome child = (Genome) species.getGenome(childIdx).clone();
+			printGenome(child);
+			printGenome(species.getGenome(childIdx));
+			
+		}
+		catch(CloneNotSupportedException e)
+		{
+			e.printStackTrace();
 		}
 	}
 	private void initPopulation(int inputCount, int outputCount, int initPopulationCount)
@@ -164,11 +152,86 @@ public abstract class Neat {
 
 	public void simulateGeneration()
 	{
-		/*Speciation*/
-		/*Selection*/
-		/*CrossOver*/
-		/*Mutation*/
-		/*Fitness Calculation*/
+		RandomGenerator randomGenerator = new RandomGenerator();
+		Iterator<Species> iSpecies = speciesList.iterator();
+		int populationPreSelection, newGenomeCount;
+		ArrayList<Genome> newChildren = new ArrayList<Genome>();
+		while(iSpecies.hasNext())
+		{
+			Species species = iSpecies.next();
+			populationPreSelection = species.getSpeciesPopulation();
+			//selection
+			this.selection(species);
+			//selection
+			//CrossOver
+			newGenomeCount = species.getSpeciesPopulation() - populationPreSelection;
+			if(species.getSpeciesPopulation() > 2)
+			{
+				int count = 0;
+				int crossOVerCount = (int) (newGenomeCount * Globals.matingCrossOverProportin / 100);
+				while(count < crossOVerCount)
+				{
+					int parentIdx1 = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
+					int parentIdx2 = parentIdx1;
+					while(parentIdx2 == parentIdx1)
+						parentIdx2 = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
+					Genome parent1 = species.getGenome(parentIdx1);
+					Genome parent2 = species.getGenome(parentIdx2);
+					Genome child = Genome.crossOver(parent1, parent2);
+					newChildren.add(child);
+					child.setFitnessScore(calculateFitnessScore(child));
+					count++;
+				}
+			}
+			//CrossOver
+			//mutation
+			int mutationCount = populationPreSelection - species.getSpeciesPopulation();
+			for(int count = 0; count < mutationCount; count++)
+			{
+				int childIdx = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
+				try
+				{
+					Genome child = (Genome) species.getGenome(childIdx).clone();
+					mutateGenome(child);
+					species.addGenome(child);
+					newChildren.add(child);
+					child.setFitnessScore(calculateFitnessScore(child));
+				}
+				catch(CloneNotSupportedException e)
+				{
+					e.printStackTrace();
+				}
+			}
+			//mutation
+		}
+
+		//speciation
+		boolean newSpeciesIdentified = true;
+		Iterator<Genome> iNewGenome;
+		iSpecies = speciesList.iterator();
+		iNewGenome = newChildren.iterator();
+		while(iNewGenome.hasNext())
+		{
+			Genome genome = iNewGenome.next();
+			iSpecies = speciesList.iterator();
+			while(iSpecies.hasNext())
+			{
+				Species species = iSpecies.next();
+				if(species.genomeBelongsToSpecies(genome))
+				{
+					species.addGenome(genome);
+					newSpeciesIdentified = false;
+					break;
+				}
+			}
+			if(newSpeciesIdentified)
+			{
+				Species species = new Species();
+				speciesList.add(species);
+				species.addGenome(genome);
+			}
+		}
+		//speciation
 	}
 	private static double sigmoid(double x)
 	{
@@ -394,28 +457,22 @@ public abstract class Neat {
 		}
 	}
 	
-	private void selection()
+	private void selection(Species s)
 	{
-		Iterator<Species> i = speciesList.iterator();
-		Species s;
 		int population;
-		while(i.hasNext())
+		population = s.getSpeciesPopulation();
+		if(population > Globals.minimumPopulation)
 		{
-			s = i.next();
-			population = s.getSpeciesPopulation();
-			if(population > Globals.minimumPopulation)
+			population = (int) (population * Globals.populationSruvivalPercentage) / 100;
+			population = min(Globals.minimumPopulation, population);
+			try
 			{
-				population = (int) (population * Globals.populationSruvivalPercentage) / 100;
-				population = min(Globals.minimumPopulation, population);
-				try
-				{
-					s.removeFromIndexToEnd(population);
-				}
-				catch(IndexOutOfBoundsException e)
-				{
-					System.out.println(e.getMessage());
-					e.printStackTrace();
-				}
+				s.removeFromIndexToEnd(population);
+			}
+			catch(IndexOutOfBoundsException e)
+			{
+				System.out.println(e.getMessage());
+				e.printStackTrace();
 			}
 		}
 	}

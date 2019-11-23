@@ -13,6 +13,7 @@ public class Globals {
 	
 	//crossover
 	static double enableDisableFlagProbablity = 75;
+	static double matingCrossOverProportin = 100;
 	//crossover
 	
 	//Selection

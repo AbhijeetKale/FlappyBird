@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /*Represent the list of Genes/Connections in a Neural net, basically the neural itself*/
-public class Genome implements Comparator<Gene>{
+public class Genome implements Comparator<Gene>, Cloneable {
 	
 	private SortedList<Gene> genome;
 	private double fitness;
@@ -198,5 +198,10 @@ public class Genome implements Comparator<Gene>{
 			weightMap.put(pair, gene.getWeight());
 		}
 		return weightMap;
+	}
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
 	}
 }

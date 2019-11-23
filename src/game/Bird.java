@@ -7,8 +7,11 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Iterator;
+import java.util.List;
+
 import javax.swing.JPanel;
 import neat.Genome;
+import neat.InCorrectInputException;
 import neat.Neat;
 import others.Mutex;
 
@@ -34,6 +37,12 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		animator = new Thread(this);
 		initParams();
 	}
+	public void setNeatParamsToBird(Neat n, Genome genome)
+	{
+		this.genome = genome;
+		this.neat = n;
+	}
+
 	public void setBirdPosition(int x, int y)
 	{
 		this.x = x;
@@ -119,6 +128,50 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 			}
 		}
 	}
+	private boolean jumpDecision()
+	{
+		Iterator<Pipe> iterator = pipesInView.iterator();
+		int y_diff = 1, x_diff = -1;
+		while(iterator.hasNext())
+		{
+			Pipe p = iterator.next();
+			x_diff = p.getPositionX() - this.x;
+			if(x_diff > 0)
+			{
+				y_diff = GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP;
+				break;
+			}
+		}
+		List<Double> output;
+		double[] input = new double[GlobalVariables.inputCounts];
+		input[0] = y_diff;
+		input[1] = x_diff;
+		input[2] = this.velocity;
+		input[3] = GlobalVariables.MOVEMENT_X;
+		input[4] = this.ACC;
+		try
+		{
+			output = neat.calculateOutputForGenome(this.genome, input);
+		}
+		catch(InCorrectInputException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		if(output.size() > 0)
+		{
+			double x = output.get(0);
+			System.out.println("input1 = " + input[0]);
+			System.out.println("input2 = " + input[1]);
+			System.out.println("input3 = " + input[2]);
+			System.out.println("input4 = " + input[3]);
+			System.out.println("input5 = " + input[4]);
+			System.out.println(x);
+			System.out.println();
+			return x >= 0.5 ? true : false;
+		}
+		return false;
+	}
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -126,6 +179,8 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		while(GlobalVariables.isBirdAlive)
 		{
 			beforetime = System.currentTimeMillis();
+			if(jumpDecision())
+				this.velocity = GlobalVariables.JUMP_VELOCITY;
 			cycle();
 			repaint();
 			timediff = System.currentTimeMillis() - beforetime;
@@ -147,7 +202,8 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_SPACE)
 			synchronized(Mutex.class)
 			{
-				this.velocity = GlobalVariables.JUMP_VELOCITY;
+				//this.velocity = GlobalVariables.JUMP_VELOCITY;
+				GlobalVariables.isBirdAlive = false;
 			}
 	}
 	@Override

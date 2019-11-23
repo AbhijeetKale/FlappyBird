@@ -16,7 +16,7 @@ public class GlobalVariables {
 	static final int DEAD_DELAY = 1000;
 	
 	static final int INIT_BIRD_X = 50;
-	static final int INIT_BIRD_Y = 0;
+	static final int INIT_BIRD_Y = 2 * C_HEIGHT / 5;
 	static final int BIRD_SIZE = 40;
 	static final int JUMP_VELOCITY = -17;
 	
