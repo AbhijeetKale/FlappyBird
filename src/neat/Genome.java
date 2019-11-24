@@ -21,6 +21,8 @@ public class Genome implements Comparator<Gene>, Cloneable {
 		genome = new SortedList<Gene>(this);
 		nodes = new HashMap<Node, Node>();
 		fitness = 0;
+		this.updatedDependencyGraph = false;
+		this.updatedWeightMap = false;
 	}
 	public void setFitnessScore(double fitness)	
 	{
@@ -173,7 +175,6 @@ public class Genome implements Comparator<Gene>, Cloneable {
 	{
 		if(updatedDependencyGraph)
 			return this.dependencyGraph;
-		ArrayList<listNode<Node>> dependencyGraph;
 		dependencyGraph = new ArrayList<listNode<Node>>();
 		Iterator<Node> nodeIterator = this.nodes.keySet().iterator();
 		while(nodeIterator.hasNext())

@@ -1,19 +1,14 @@
 package game;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import javax.swing.JPanel;
 
 public class Pipe{
 	
+	private int id;
 	private int x;
 	private int y;
 	private int height;
 	private final String color = "0x00ff00";
-	public Pipe(int height)
+	public Pipe(int height, int id)
 	{
 		this.height = height;
 		initParams();
@@ -42,5 +37,9 @@ public class Pipe{
 	public void setPipeHeight(int height)
 	{
 		this.height = height;
+	}
+	public int getId()
+	{
+		return this.id;
 	}
 }

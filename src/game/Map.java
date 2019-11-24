@@ -15,7 +15,7 @@ public class Map extends JPanel implements Runnable{
 
 	private int pipeCounter = 0;
 	private Thread map;
-	private int score;
+	private int pipeCount;
 	private CustomList<Pipe> pipesInView;
 	private class CleanUp implements Runnable
 	{
@@ -33,7 +33,7 @@ public class Map extends JPanel implements Runnable{
 	}
 	public Map()
 	{
-		this.score = 0;
+		this.pipeCount = 0;
 		pipesInView = new CustomList<Pipe>();
 		map = new Thread(this);
 	}
@@ -48,7 +48,7 @@ public class Map extends JPanel implements Runnable{
 		{
 			Random r = new Random();
 			int ranHeight =  r.nextInt(400);
-			Pipe p = new Pipe(ranHeight);
+			Pipe p = new Pipe(ranHeight, ++pipeCount);
 			pipesInView.add(p);
 		}
 		pipeCounter += 1;
@@ -108,7 +108,6 @@ public class Map extends JPanel implements Runnable{
 			if(x <= -GlobalVariables.GAP)
 			{
 				pipesInView.removeHead();
-				score++;
 				continue;
 			}
 			data.setPositionX(x - GlobalVariables.MOVEMENT_X);

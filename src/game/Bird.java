@@ -80,7 +80,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	{
 		boolean collision = false;
 		Iterator<Pipe> iterator = pipesInView.iterator();
-		int y_diff, y_diff1, x_diff = 0, count = 0;
+		int y_diff = 0, y_diff1, x_diff = 0, count = 0;
 		while(iterator.hasNext())
 		{
 			Pipe p = iterator.next();
@@ -103,7 +103,6 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 			}
 			count++;
 		}
-
 		return collision;
 	}
 	@Override
@@ -120,7 +119,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		if(Collision())
 		{
 			color = "0xff0000";
-			GlobalVariables.isBirdAlive = false;
+			killBird();
 		}
 		else
 		{
@@ -133,7 +132,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 			if(y >= GlobalVariables.C_HEIGHT - height - 1)
 			{
 				y = GlobalVariables.C_HEIGHT - height - 1;
-				GlobalVariables.isBirdAlive= false;
+				killBird();
 			}
 			else if(y <= 0)
 			{
@@ -143,17 +142,36 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 			}
 		}
 	}
-	private boolean jumpDecision()
+	private void killBird()
 	{
 		Iterator<Pipe> iterator = pipesInView.iterator();
-		int y_diff = 1, x_diff = -1;
+		int x_diff = -1;
 		while(iterator.hasNext())
 		{
 			Pipe p = iterator.next();
 			x_diff = p.getPositionX() - this.x;
 			if(x_diff > 0)
 			{
-				y_diff = this.y - (GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP);
+				this.birdStat.y_diff_on_death = this.y - (GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP / 2);
+				break;
+			}
+		}
+		
+		GlobalVariables.isBirdAlive= false;
+	}
+	private boolean jumpDecision()
+	{
+		Iterator<Pipe> iterator = pipesInView.iterator();
+		int y_diff = 1, x_diff = -1;
+		Pipe p;
+		while(iterator.hasNext())
+		{
+			p = iterator.next();
+			x_diff = p.getPositionX() - this.x + GlobalVariables.PIPE_WIDTH;
+			if(x_diff > 0)
+			{
+				this.birdStat.pipesCrossed = max(0, p.getId() - 1);
+				y_diff = this.y - (GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP / 2);
 				break;
 			}
 		}
@@ -161,10 +179,6 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		double[] input = new double[GlobalVariables.inputCounts];
 		input[0] = y_diff;
 		input[1] = x_diff;
-		input[2] = this.velocity;
-		input[3] = GlobalVariables.MOVEMENT_X;
-		input[4] = this.ACC;
-		this.birdStat.y_diff_on_death = y_diff;
 		try
 		{
 			output = neat.calculateOutputForGenome(this.genome, input);
@@ -234,5 +248,9 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	private int max(int a, int b)
+	{
+		return a > b ? a : b;
 	}
 }
