@@ -12,7 +12,10 @@ public class Genome implements Comparator<Gene>, Cloneable {
 	private SortedList<Gene> genome;
 	private double fitness;
 	private HashMap<Node, Node> nodes;
-	
+	private ArrayList<listNode<Node>> dependencyGraph = null;
+	private boolean updatedDependencyGraph = false;
+	private HashMap<Pair<Integer, Integer>, Double> weightMap = null;
+	private boolean updatedWeightMap = false;
 	public Genome()
 	{
 		genome = new SortedList<Gene>(this);
@@ -29,6 +32,8 @@ public class Genome implements Comparator<Gene>, Cloneable {
 	}
 	public void addGene(Gene g)
 	{
+		updatedDependencyGraph = false;
+		updatedWeightMap = false;
 		if(!nodes.containsKey(g.getInNode()))
 			addNode(g.getInNode());
 		if(!nodes.containsKey(g.getOutNode()))
@@ -117,6 +122,8 @@ public class Genome implements Comparator<Gene>, Cloneable {
 	}
 	public void addNode(Node node)
 	{
+		updatedDependencyGraph = false;
+		updatedWeightMap = false;
 		nodes.put(node, node);
 	}
 	public HashMap<Node, Node> getNodes()
@@ -164,6 +171,8 @@ public class Genome implements Comparator<Gene>, Cloneable {
 	//dependency graph: 1st element for each element is the node dependent on all following nodes	
 	public ArrayList<listNode<Node>> nodeDependencyGraph()
 	{
+		if(updatedDependencyGraph)
+			return this.dependencyGraph;
 		ArrayList<listNode<Node>> dependencyGraph;
 		dependencyGraph = new ArrayList<listNode<Node>>();
 		Iterator<Node> nodeIterator = this.nodes.keySet().iterator();
@@ -184,12 +193,14 @@ public class Genome implements Comparator<Gene>, Cloneable {
 				listNode.next = tmp;
 			}
 		}
+		updatedDependencyGraph = true;
 		return dependencyGraph;
 	}
 	//here weight map is inNode and outNode to weight value
 	public HashMap<Pair<Integer, Integer>, Double> genomeWeightMap()
 	{
-		HashMap<Pair<Integer, Integer>, Double> weightMap;
+		if(updatedWeightMap)
+			return this.weightMap;
 		weightMap = new HashMap<Pair<Integer,Integer>, Double>();
 		SortedListIterator<Gene> i = this.genome.iterator();
 		while(i.hasNext())
@@ -200,11 +211,43 @@ public class Genome implements Comparator<Gene>, Cloneable {
 			Pair<Integer, Integer> pair = new Pair<Integer, Integer>(inNodeId, outNodeId);
 			weightMap.put(pair, gene.getWeight());
 		}
+		updatedWeightMap = true;
 		return weightMap;
 	}
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
 		return super.clone();
+	}
+	public void mutateRandomWeight()
+	{
+		RandomGenerator randomGenerator = new RandomGenerator();
+		Boolean[] actions = {true, false};
+		double weight;
+		double probs[] = {Globals.randomlyChangeWeightProbability, 100 - Globals.randomlyChangeWeightProbability};
+		boolean randomlyMutate = (boolean) randomGenerator.probablityBasedAction(actions, probs);
+		int randomGenomeIndex = randomGenerator.getRandomIntWithLimit(this.genomeSize());
+		Gene randomGene = this.getGene(randomGenomeIndex);
+
+		if(randomlyMutate)
+			weight = randomGenerator.getRandomSignedDouble();
+		else
+		{
+			Integer[] action = {-1, 1};
+			double delta = (int) randomGenerator.getRandomAction(action);
+			delta *= Globals.weightDelta;
+			weight = randomGene.getWeight() + delta;
+			weight = min(max(weight, Globals.minWeight), Globals.maxWeight);
+		}
+		randomGene.setWeight(weight);
+		updatedWeightMap = false;
+	}
+	private double min(double a, double b)
+	{
+		return a > b ? b : a;
+	}
+	private double max(double a, double b)
+	{
+		return a > b ? a : b;
 	}
 }

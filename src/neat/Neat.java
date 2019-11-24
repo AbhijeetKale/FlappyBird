@@ -429,25 +429,7 @@ public abstract class Neat {
 	/*Randomly selecting a gene and mutating it's weights (either randomly or incrementally)*/
 	private void mutateWeights(Genome genome)
 	{
-		RandomGenerator randomGenerator = new RandomGenerator();
-		Boolean[] actions = {true, false};
-		double weight;
-		double probs[] = {Globals.randomlyChangeWeightProbability, 100 - Globals.randomlyChangeWeightProbability};
-		boolean randomlyMutate = (boolean) randomGenerator.probablityBasedAction(actions, probs);
-		int randomGenomeIndex = randomGenerator.getRandomIntWithLimit(genome.genomeSize());
-		Gene randomGene = genome.getGene(randomGenomeIndex);
-
-		if(randomlyMutate)
-			weight = randomGenerator.getRandomSignedDouble();
-		else
-		{
-			Integer[] action = {-1, 1};
-			double delta = (int) randomGenerator.getRandomAction(action);
-			delta *= Globals.weightDelta;
-			weight = randomGene.getWeight() + delta;
-			weight = min(max(weight, Globals.minWeight), Globals.maxWeight);
-		}
-		randomGene.setWeight(weight);
+		genome.mutateRandomWeight();
 	}
 
 	private void mutateGenome(Genome genome)
@@ -490,19 +472,7 @@ public abstract class Neat {
 			}
 		}
 	}
-	private int min(int a, int b)
-	{
-		return a < b ? a : b;
-	}
 	private int max(int a, int b)
-	{
-		return a > b ? a : b;
-	}
-	private double min(double a, double b)
-	{
-		return a > b ? b : a;
-	}
-	private double max(double a, double b)
 	{
 		return a > b ? a : b;
 	}
