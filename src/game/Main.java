@@ -95,6 +95,8 @@ public class Main {
 		 * Using 5 different inputs to neat:
 		 * Input1: y displacement between bird and pipe gap
 		 * Input2: x distance between bird and pipe
+		 * INput3: X Speed of map
+		 * input 4: y displacement between bird and 2nd pipe
 		*/
 		Neat n = new Neat(GlobalVariables.inputCounts, GlobalVariables.outputCounts, 20) {
 			@Override
@@ -107,12 +109,9 @@ public class Main {
 				runTime = System.currentTimeMillis() - runTime;
 				m.closeWindow();
 				Stat birdStat = m.bird.getStats();
-				birdStat.totalBirdJumps = max(1, birdStat.totalBirdJumps);
-				double fitness = 0.1 * runTime + 
-								 0.8 * birdStat.x_covered / birdStat.totalBirdJumps - 0.1 * parse(birdStat.y_diff_on_death);
-				System.out.println("[Stats]: " + runTime + "-" 
-								 	+ birdStat.x_covered + "-" + birdStat.totalBirdJumps
-								 	+ "-" + birdStat.y_diff_on_death);
+				//birdStat.totalBirdJumps = max(1, birdStat.totalBirdJumps);
+				double fitness = 0.01 * runTime + 
+								 - 0.1 * parse(birdStat.y_diff_on_death);
 				return fitness;
 			}
 		};
@@ -123,14 +122,11 @@ public class Main {
 			System.out.println("[Generation]: " + generation++);
 		}
 	}
-	private static int max(int a, int b)
-	{
-		return a > b ? a : b;
-	}
 	private static double parse(double y)
 	{
 		if(y < 0)
 			y = y * -1;
 		return y;
 	}
+
 }

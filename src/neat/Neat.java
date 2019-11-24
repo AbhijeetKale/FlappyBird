@@ -36,7 +36,7 @@ public abstract class Neat {
 	{
 		Gene testGene;
 		SortedListIterator<Gene> geneIterator = genome.iterator();
-		System.out.println("Genome" + ": Fitness = " + genome.getFitnessScore());
+		System.out.println("Genome" + ": label = " + genome.getLabel() + " Fitness = " + genome.getFitnessScore());
 		while(geneIterator.hasNext())
 		{
 			testGene = geneIterator.next();
@@ -64,23 +64,6 @@ public abstract class Neat {
 				counter++;
 			}
 			count++;
-		}
-	}
-	public void testing()
-	{
-		RandomGenerator randomGenerator = new RandomGenerator();
-		Species species = speciesList.get(0);
-		int childIdx = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
-		try
-		{
-			Genome child = (Genome) species.getGenome(childIdx).clone();
-			printGenome(child);
-			printGenome(species.getGenome(childIdx));
-			
-		}
-		catch(CloneNotSupportedException e)
-		{
-			e.printStackTrace();
 		}
 	}
 	private void initPopulation(int inputCount, int outputCount, int initPopulationCount)
@@ -138,8 +121,9 @@ public abstract class Neat {
 					allExistingGenes.put(p, gene);
 			}
 			genome.setFitnessScore(this.calculateFitnessScore(genome));
-			printGenome(genome);
+			genome.setLabel(GenomeLabel.INIT);
 			species1.addGenome(genome);
+			printGenome(genome);
 		}
 		speciesList.add(species1);
 	}
@@ -155,26 +139,25 @@ public abstract class Neat {
 	{
 		RandomGenerator randomGenerator = new RandomGenerator();
 		Iterator<Species> iSpecies = speciesList.iterator();
-		int populationPreSelection, newGenomeCount;
+		int populationPreSelection;
 		ArrayList<Genome> newGeneration = new ArrayList<Genome>();
+		System.out.println("***********************************************");
+		printAllSpecies();
+		System.out.println("***********************************************");
 		while(iSpecies.hasNext())
 		{
 			Species species = iSpecies.next();
 			populationPreSelection = species.getSpeciesPopulation();
 			//selection
 			this.selection(species);
-			System.out.println("***********************************************");
-			printAllSpecies();
-			System.out.println("***********************************************");
 			//selection
 			//CrossOver
 			int top50 = 1 + species.getSpeciesPopulation() / 2;
-			newGenomeCount = species.getSpeciesPopulation() - populationPreSelection;
 			if(species.getSpeciesPopulation() > 2)
 			{
-				int count = 0;
-				int crossOVerCount = (int) (newGenomeCount * Globals.matingCrossOverProportin / 100);
-				while(count < crossOVerCount)
+				int crossOVerCount = (int) ((populationPreSelection - species.getSpeciesPopulation())
+											 * Globals.matingCrossOverProportin / 100);
+				for(int count = 0; count < crossOVerCount; count++)
 				{
 					int parentIdx1 = randomGenerator.getRandomIntWithLimit(top50);
 					int parentIdx2 = parentIdx1;
@@ -182,9 +165,10 @@ public abstract class Neat {
 						parentIdx2 = randomGenerator.getRandomIntWithLimit(top50);
 					Genome parent1 = species.getGenome(parentIdx1);
 					Genome parent2 = species.getGenome(parentIdx2);
-					Genome child = Genome.crossOver(parent1, parent2);
+					Genome child = Genome.crossOver(parent1, parent2, 
+													this.inputNodeCount, this.outputNodeCount);
+					child.setLabel(GenomeLabel.CROSSOVER);
 					newGeneration.add(child);
-					count++;
 				}
 			}
 			//CrossOver
@@ -192,7 +176,7 @@ public abstract class Neat {
 			int mutationCount = populationPreSelection - species.getSpeciesPopulation();
 			for(int count = 0; count < mutationCount; count++)
 			{
-				int childIdx = randomGenerator.getRandomIntBetween(top50, species.getSpeciesPopulation());
+				int childIdx = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
 				try
 				{
 					Genome child = (Genome) species.getGenome(childIdx).clone();
@@ -225,8 +209,8 @@ public abstract class Neat {
 		{
 			newSpeciesIdentified = true;
 			Genome genome = iNewGenome.next();
-			genome.setFitnessScore(calculateFitnessScore(genome));
 			printGenome(genome);
+			genome.setFitnessScore(calculateFitnessScore(genome));
 			iSpecies = speciesList.iterator();
 			while(iSpecies.hasNext())
 			{
@@ -443,12 +427,17 @@ public abstract class Neat {
 		{
 		case NODE:
 			addRandomNodeToGenome(genome);
+			genome.setLabel(GenomeLabel.NODE_MUTATED);
 			break;
 		case CONNECTION:
 			if(addRandomConnectionToGenome(genome))
+			{
+				genome.setLabel(GenomeLabel.CONN_MUTATED);
 				break;
+			}
 		case WEIGHT:
 			mutateWeights(genome);
+			genome.setLabel(GenomeLabel.WEIGHT_MUTATED);
 			break;
 		}
 	}

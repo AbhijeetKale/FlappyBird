@@ -80,7 +80,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	{
 		boolean collision = false;
 		Iterator<Pipe> iterator = pipesInView.iterator();
-		int y_diff = 0, y_diff1, x_diff = 0, count = 0;
+		int y_diff = 0, y_diff1, x_diff = 0;
 		while(iterator.hasNext())
 		{
 			Pipe p = iterator.next();
@@ -101,7 +101,6 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 					break;
 				}
 			}
-			count++;
 		}
 		return collision;
 	}
@@ -162,7 +161,9 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	private boolean jumpDecision()
 	{
 		Iterator<Pipe> iterator = pipesInView.iterator();
-		int y_diff = 1, x_diff = -1;
+		int y_diff = 1, x_diff = -1, next_pipe_view = 0;
+		double[] input = new double[GlobalVariables.inputCounts];
+		input[3] = -10000;
 		Pipe p;
 		while(iterator.hasNext())
 		{
@@ -172,13 +173,23 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 			{
 				this.birdStat.pipesCrossed = max(0, p.getId() - 1);
 				y_diff = this.y - (GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP / 2);
-				break;
+				if(next_pipe_view == 1)
+				{
+					input[3] = y_diff; 
+					break;
+				}
+				else
+				{
+					input[0] = y_diff;
+					input[1] = x_diff;
+				}
+				next_pipe_view++;
 			}
 		}
 		List<Double> output;
-		double[] input = new double[GlobalVariables.inputCounts];
-		input[0] = y_diff;
-		input[1] = x_diff;
+		input[2] = GlobalVariables.xSpeed;
+		if(input[3] == -10000)
+			input[3] = input[2];
 		try
 		{
 			output = neat.calculateOutputForGenome(this.genome, input);

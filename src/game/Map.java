@@ -17,6 +17,7 @@ public class Map extends JPanel implements Runnable{
 	private Thread map;
 	private int pipeCount;
 	private CustomList<Pipe> pipesInView;
+	
 	private class CleanUp implements Runnable
 	{
 		private Thread th;
@@ -36,6 +37,8 @@ public class Map extends JPanel implements Runnable{
 		this.pipeCount = 0;
 		pipesInView = new CustomList<Pipe>();
 		map = new Thread(this);
+		GlobalVariables.xSpeed = GlobalVariables.MOVEMENT_X;
+		GlobalVariables.pipeInterval = GlobalVariables.PIPE_INTERVAL;
 	}
 	CustomList<Pipe> getPipesInVIew()
 	{
@@ -44,11 +47,16 @@ public class Map extends JPanel implements Runnable{
 	/*Map propagation function*/
 	private void cycle()
 	{
-		if(pipeCounter % GlobalVariables.PIPE_INTERVAL == 0)
+		if(pipeCounter % GlobalVariables.pipeInterval == 0)
 		{
 			Random r = new Random();
 			int ranHeight =  r.nextInt(400);
 			Pipe p = new Pipe(ranHeight, ++pipeCount);
+			if(pipeCount % 5 == 0 && GlobalVariables.xSpeed < GlobalVariables.MOVEMENT_X * 3)
+			{
+				GlobalVariables.xSpeed++;
+				GlobalVariables.pipeInterval -= GlobalVariables.PIPE_INTERVAL / 3;
+			}
 			pipesInView.add(p);
 		}
 		pipeCounter += 1;
@@ -71,9 +79,9 @@ public class Map extends JPanel implements Runnable{
 	@Override 
 	public void run() {
 		// TODO Auto-generated method stub
+		long beforetime, delay, timediff;
  		while(GlobalVariables.isBirdAlive)
 		{
-			long beforetime, delay, timediff;
 			beforetime = System.currentTimeMillis();
 			cycle();
 			repaint();
@@ -110,13 +118,13 @@ public class Map extends JPanel implements Runnable{
 				pipesInView.removeHead();
 				continue;
 			}
-			data.setPositionX(x - GlobalVariables.MOVEMENT_X);
+			data.setPositionX(x - GlobalVariables.xSpeed);
 			g2d.setColor(Color.decode(data.getColor()));
-			g2d.fillRect(x - GlobalVariables.MOVEMENT_X, 0, 
+			g2d.fillRect(x - GlobalVariables.xSpeed, 0, 
 						GlobalVariables.PIPE_WIDTH, 
 						GlobalVariables.C_HEIGHT - data.getHeight() - GlobalVariables.GAP);
 			
-			g2d.fillRect(x - GlobalVariables.MOVEMENT_X, 
+			g2d.fillRect(x - GlobalVariables.xSpeed, 
 						 GlobalVariables.C_HEIGHT - data.getHeight() + GlobalVariables.PIPE_PLACEMENT_ADJUSTMENT, 
 						 GlobalVariables.PIPE_WIDTH, data.getHeight());
 		}

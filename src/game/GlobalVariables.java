@@ -7,7 +7,7 @@ public class GlobalVariables {
 	/*Gap between top and bottom pipe*/
 	static final int GAP = 230;
 	/*Speed of map*/
-	static final int MOVEMENT_X = 1;
+	static int MOVEMENT_X = 1;
 	
 	/*Frame rate for bird thread*/
 	static final int DELAY_Y = 33;
@@ -22,7 +22,7 @@ public class GlobalVariables {
 	
 	static final int PIPE_WIDTH = 50;
 	/*Interval between two pipes*/
-	static final int PIPE_INTERVAL = 150;
+	static int PIPE_INTERVAL = 150;
 	/*Number of pipes encountered before cleanup process*/
 	static final int PIPE_COUNTER_TH= 100;
 	static final int INIT_PIPE_HEIGHT = 200;
@@ -37,7 +37,9 @@ public class GlobalVariables {
 	
 	
 	/*Neat specific configs*/
-	static final int inputCounts = 2;
+	static final int inputCounts = 4;
 	static final int outputCounts = 1;
 	
+	static int xSpeed;
+	static int pipeInterval;
 }

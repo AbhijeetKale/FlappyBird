@@ -4,8 +4,16 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-
+import java.util.Set;
+enum GenomeLabel
+{
+	UNSET,
+	NODE_MUTATED,
+	WEIGHT_MUTATED,
+	CONN_MUTATED,
+	CROSSOVER,
+	INIT
+}
 /*Represent the list of Genes/Connections in a Neural net, basically the neural itself*/
 public class Genome implements Comparator<Gene>, Cloneable {
 	
@@ -16,6 +24,8 @@ public class Genome implements Comparator<Gene>, Cloneable {
 	private boolean updatedDependencyGraph = false;
 	private HashMap<Pair<Integer, Integer>, Double> weightMap = null;
 	private boolean updatedWeightMap = false;
+	private GenomeLabel label = GenomeLabel.UNSET;
+	
 	public Genome()
 	{
 		genome = new SortedList<Gene>(this);
@@ -23,6 +33,14 @@ public class Genome implements Comparator<Gene>, Cloneable {
 		fitness = 0;
 		this.updatedDependencyGraph = false;
 		this.updatedWeightMap = false;
+	}
+	public void setLabel(GenomeLabel label)
+	{
+		this.label = label;
+	}
+	public GenomeLabel getLabel()
+	{
+		return this.label;
 	}
 	public void setFitnessScore(double fitness)	
 	{
@@ -47,7 +65,7 @@ public class Genome implements Comparator<Gene>, Cloneable {
 		return this.fitness;
 	}
 
-	public static Genome crossOver(Genome parent1, Genome parent2)
+	public static Genome crossOver(Genome parent1, Genome parent2, int inputCount, int outputCount)
 	{
 		Genome child = new Genome();
 		GenomePairData pairData = new GenomePairData(parent1, parent2);
@@ -56,7 +74,19 @@ public class Genome implements Comparator<Gene>, Cloneable {
 		ArrayList<Gene> disjointGenes2 = pairData.getDisjointGenes2();
 		ArrayList<Gene> excessGenes = null, excessGenes2 = null;
 		RandomGenerator randomGenerator = new RandomGenerator();
-		
+		Node tmp;
+		//adding input nodes
+		for(int counter = 0; counter < inputCount; counter++)
+		{
+			tmp = new Node(counter, NodeType.INPUT);
+			child.addNode(tmp);
+		}
+		//adding output nodes
+		for(int counter = 0; counter < outputCount; counter++)
+		{
+			tmp = new Node(inputCount + counter, NodeType.OUTPUT);
+			child.addNode(tmp);
+		}
 		if(parent1.getFitnessScore() == parent2.getFitnessScore())
 		{
 			excessGenes = pairData.getExcessGenes1();
@@ -175,8 +205,9 @@ public class Genome implements Comparator<Gene>, Cloneable {
 	{
 		if(updatedDependencyGraph)
 			return this.dependencyGraph;
-		dependencyGraph = new ArrayList<listNode<Node>>();
-		Iterator<Node> nodeIterator = this.nodes.keySet().iterator();
+		Set<Node> keys = this.nodes.keySet();
+		Iterator<Node> nodeIterator = keys.iterator();
+		dependencyGraph = new ArrayList<listNode<Node>>(keys.size());
 		while(nodeIterator.hasNext())
 		{
 			Node node = nodeIterator.next();
