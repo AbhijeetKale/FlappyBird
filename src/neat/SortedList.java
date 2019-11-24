@@ -133,7 +133,7 @@ public class SortedList<E> {
 	{
 		if(index >= size)
 		{
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("index is more than size, siz = " + size + " index = " + index);
 		}
 		listNode<E> tmp = head;
 		for(int count = 0; count < index; count++)

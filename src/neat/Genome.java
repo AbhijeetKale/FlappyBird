@@ -176,10 +176,13 @@ public class Genome implements Comparator<Gene>, Cloneable {
 		while(i.hasNext())
 		{
 			Gene gene = i.next();
-			listNode<Node> listNode = dependencyGraph.get(gene.getInNode().getNodeId());
-			listNode<Node> tmp = new listNode<Node>(gene.getOutNode());
-			tmp.next = listNode.next;
-			listNode.next = tmp;
+			if(gene.isEnabled())
+			{
+				listNode<Node> listNode = dependencyGraph.get(gene.getInNode().getNodeId());
+				listNode<Node> tmp = new listNode<Node>(gene.getOutNode());
+				tmp.next = listNode.next;
+				listNode.next = tmp;
+			}
 		}
 		return dependencyGraph;
 	}

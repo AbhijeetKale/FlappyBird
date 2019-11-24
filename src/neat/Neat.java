@@ -138,6 +138,7 @@ public abstract class Neat {
 					allExistingGenes.put(p, gene);
 			}
 			genome.setFitnessScore(this.calculateFitnessScore(genome));
+			printGenome(genome);
 			species1.addGenome(genome);
 		}
 		speciesList.add(species1);
@@ -155,16 +156,19 @@ public abstract class Neat {
 		RandomGenerator randomGenerator = new RandomGenerator();
 		Iterator<Species> iSpecies = speciesList.iterator();
 		int populationPreSelection, newGenomeCount;
-		ArrayList<Genome> newChildren = new ArrayList<Genome>();
+		ArrayList<Genome> newGeneration = new ArrayList<Genome>();
 		while(iSpecies.hasNext())
 		{
 			Species species = iSpecies.next();
-			int top50 = 1 + species.getSpeciesPopulation() / 2;
 			populationPreSelection = species.getSpeciesPopulation();
 			//selection
 			this.selection(species);
+			System.out.println("***********************************************");
+			printAllSpecies();
+			System.out.println("***********************************************");
 			//selection
 			//CrossOver
+			int top50 = 1 + species.getSpeciesPopulation() / 2;
 			newGenomeCount = species.getSpeciesPopulation() - populationPreSelection;
 			if(species.getSpeciesPopulation() > 2)
 			{
@@ -179,8 +183,7 @@ public abstract class Neat {
 					Genome parent1 = species.getGenome(parentIdx1);
 					Genome parent2 = species.getGenome(parentIdx2);
 					Genome child = Genome.crossOver(parent1, parent2);
-					newChildren.add(child);
-					child.setFitnessScore(calculateFitnessScore(child));
+					newGeneration.add(child);
 					count++;
 				}
 			}
@@ -194,25 +197,36 @@ public abstract class Neat {
 				{
 					Genome child = (Genome) species.getGenome(childIdx).clone();
 					mutateGenome(child);
-					newChildren.add(child);
-					child.setFitnessScore(calculateFitnessScore(child));
+					newGeneration.add(child);
 				}
 				catch(CloneNotSupportedException e)
 				{
 					e.printStackTrace();
 				}
+				catch(IndexOutOfBoundsException e)
+				{
+					e.printStackTrace();
+				}
 			}
 			//mutation
+			
+			SortedListIterator<Genome> iAncestors = species.iterator();
+			while(iAncestors.hasNext())
+				newGeneration.add(iAncestors.next());
 		}
-
+		for(int count = speciesList.size() - 1; count >= 0; count--)
+			speciesList.remove(count);
 		//speciation
 		boolean newSpeciesIdentified = true;
 		Iterator<Genome> iNewGenome;
 		iSpecies = speciesList.iterator();
-		iNewGenome = newChildren.iterator();
+		iNewGenome = newGeneration.iterator();
 		while(iNewGenome.hasNext())
 		{
+			newSpeciesIdentified = true;
 			Genome genome = iNewGenome.next();
+			genome.setFitnessScore(calculateFitnessScore(genome));
+			printGenome(genome);
 			iSpecies = speciesList.iterator();
 			while(iSpecies.hasNext())
 			{
@@ -464,7 +478,7 @@ public abstract class Neat {
 		if(population > Globals.minimumPopulation)
 		{
 			population = (int) (population * Globals.populationSruvivalPercentage) / 100;
-			population = min(Globals.minimumPopulation, population);
+			population = max(Globals.minimumPopulation, population);
 			try
 			{
 				s.removeFromIndexToEnd(population);

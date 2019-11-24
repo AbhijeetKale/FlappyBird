@@ -107,12 +107,13 @@ public class Main {
 				m.setNeatParamsToBird(this, genome);
 				m.game();
 				m.closeWindow();
-				this.printGenome(genome);
 				Stat birdStat = m.bird.getStats();
 				birdStat.totalBirdJumps = max(1, birdStat.totalBirdJumps);
 				double fitness = 10 * birdStat.pipesCrossed + 
-								 birdStat.x_covered / birdStat.totalBirdJumps - 0.5 * abs(birdStat.y_diff_on_death);
-				System.out.println("[Stats]: " + birdStat.x_covered + "-" + birdStat.totalBirdJumps);
+								 birdStat.x_covered / birdStat.totalBirdJumps - 0.1 * parse(birdStat.y_diff_on_death);
+				System.out.println("[Stats]: " + birdStat.pipesCrossed + "-" 
+								 	+ birdStat.x_covered + "-" + birdStat.totalBirdJumps
+								 	+ "-" + birdStat.y_diff_on_death);
 				return fitness;
 			}
 		};
@@ -127,10 +128,14 @@ public class Main {
 	{
 		return a > b ? a : b;
 	}
-	private static double abs(double x)
+	private static double parse(double y)
 	{
-		if(x < 0)
-			x *= -1;
-		return x;
+		if(y > 0 && y < GlobalVariables.GAP)
+		{
+			return 0;
+		}
+		else if(y < 0)
+			y = y * -1;
+		return y;
 	}
 }

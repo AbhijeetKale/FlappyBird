@@ -103,8 +103,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 			}
 			count++;
 		}
-		if(x_diff > -2 || x_diff < 1)
-			birdStat.pipesCrossed++;
+
 		return collision;
 	}
 	@Override
@@ -179,11 +178,11 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		{
 			double outputX = output.get(0);
 
-			String s = "[input] " + input[0] + "-" + input[1]
+/*			String s = "[input] " + input[0] + "-" + input[1]
 						+ "-" + input[2] + "-" + input[3] + "-" + input[4];
 			System.out.println(s);
 			System.out.println(outputX);
-			System.out.println();
+			System.out.println();*/
 			return outputX > 0.5 ? true : false;
 		}
 		return false;
