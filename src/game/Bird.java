@@ -28,6 +28,8 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	private CustomList<Pipe> pipesInView;
 	private Genome genome;
 	private Neat neat;
+	private Stat birdStat;
+	
 	public Bird(int height, int width)
 	{
 		this.width = width;
@@ -35,7 +37,12 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		setPreferredSize(new Dimension(GlobalVariables.BIRD_SIZE, GlobalVariables.C_HEIGHT));
 		GlobalVariables.isBirdAlive = true;
 		animator = new Thread(this);
+		birdStat = new Stat();;
 		initParams();
+	}
+	public Stat getStats()
+	{
+		return this.birdStat;
 	}
 	public void setNeatParamsToBird(Neat n, Genome genome)
 	{
@@ -71,25 +78,34 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	/*Detect collision between bird and pipes*/
 	private boolean Collision()
 	{
+		boolean collision = false;
 		Iterator<Pipe> iterator = pipesInView.iterator();
+		int y_diff, y_diff1, x_diff = 0, count = 0;
 		while(iterator.hasNext())
 		{
 			Pipe p = iterator.next();
-			int y_diff = GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP;
-			int y_diff1 = y_diff + GlobalVariables.GAP
+			y_diff = GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP;
+			y_diff1 = y_diff + GlobalVariables.GAP
 						  -GlobalVariables.BIRD_SIZE + GlobalVariables.PIPE_PLACEMENT_ADJUSTMENT;
 			if(this.y < y_diff || this.y > y_diff1)
 			{
-				int x_diff = p.getPositionX() - this.x;
+				x_diff = p.getPositionX() - this.x;
 				if(x_diff > 0 && x_diff < GlobalVariables.BIRD_SIZE)
 				{
-					return true;
+					collision = true;
+					break;
 				}
 				else if(x_diff < 0 && -x_diff < GlobalVariables.PIPE_WIDTH)
-					return true;
+				{
+					collision = true;
+					break;
+				}
 			}
+			count++;
 		}
-		return false;
+		if(x_diff > -2 || x_diff < 1)
+			birdStat.pipesCrossed++;
+		return collision;
 	}
 	@Override
 	public void paintComponent(Graphics g)
@@ -138,7 +154,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 			x_diff = p.getPositionX() - this.x;
 			if(x_diff > 0)
 			{
-				y_diff = GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP;
+				y_diff = this.y - (GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP);
 				break;
 			}
 		}
@@ -149,6 +165,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		input[2] = this.velocity;
 		input[3] = GlobalVariables.MOVEMENT_X;
 		input[4] = this.ACC;
+		this.birdStat.y_diff_on_death = y_diff;
 		try
 		{
 			output = neat.calculateOutputForGenome(this.genome, input);
@@ -160,15 +177,14 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		}
 		if(output.size() > 0)
 		{
-			double x = output.get(0);
-			System.out.println("input1 = " + input[0]);
-			System.out.println("input2 = " + input[1]);
-			System.out.println("input3 = " + input[2]);
-			System.out.println("input4 = " + input[3]);
-			System.out.println("input5 = " + input[4]);
-			System.out.println(x);
+			double outputX = output.get(0);
+
+			String s = "[input] " + input[0] + "-" + input[1]
+						+ "-" + input[2] + "-" + input[3] + "-" + input[4];
+			System.out.println(s);
+			System.out.println(outputX);
 			System.out.println();
-			return x >= 0.5 ? true : false;
+			return outputX > 0.5 ? true : false;
 		}
 		return false;
 	}
@@ -180,7 +196,11 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		{
 			beforetime = System.currentTimeMillis();
 			if(jumpDecision())
+			{
 				this.velocity = GlobalVariables.JUMP_VELOCITY;
+				birdStat.totalBirdJumps++;
+			}
+			birdStat.x_covered += GlobalVariables.MOVEMENT_X;
 			cycle();
 			repaint();
 			timediff = System.currentTimeMillis() - beforetime;

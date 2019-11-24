@@ -159,6 +159,7 @@ public abstract class Neat {
 		while(iSpecies.hasNext())
 		{
 			Species species = iSpecies.next();
+			int top50 = 1 + species.getSpeciesPopulation() / 2;
 			populationPreSelection = species.getSpeciesPopulation();
 			//selection
 			this.selection(species);
@@ -171,10 +172,10 @@ public abstract class Neat {
 				int crossOVerCount = (int) (newGenomeCount * Globals.matingCrossOverProportin / 100);
 				while(count < crossOVerCount)
 				{
-					int parentIdx1 = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
+					int parentIdx1 = randomGenerator.getRandomIntWithLimit(top50);
 					int parentIdx2 = parentIdx1;
 					while(parentIdx2 == parentIdx1)
-						parentIdx2 = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
+						parentIdx2 = randomGenerator.getRandomIntWithLimit(top50);
 					Genome parent1 = species.getGenome(parentIdx1);
 					Genome parent2 = species.getGenome(parentIdx2);
 					Genome child = Genome.crossOver(parent1, parent2);
@@ -188,12 +189,11 @@ public abstract class Neat {
 			int mutationCount = populationPreSelection - species.getSpeciesPopulation();
 			for(int count = 0; count < mutationCount; count++)
 			{
-				int childIdx = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
+				int childIdx = randomGenerator.getRandomIntBetween(top50, species.getSpeciesPopulation());
 				try
 				{
 					Genome child = (Genome) species.getGenome(childIdx).clone();
 					mutateGenome(child);
-					species.addGenome(child);
 					newChildren.add(child);
 					child.setFitnessScore(calculateFitnessScore(child));
 				}

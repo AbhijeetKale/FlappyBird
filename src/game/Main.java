@@ -1,8 +1,10 @@
 package game;
 
 import java.awt.event.WindowEvent;
+import java.lang.System.Logger;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
 import neat.Genome;
@@ -14,6 +16,8 @@ public class Main {
 	private Bird bird;
 	private Map map;
 	private JPanel container;
+	private JLabel neatLabel;
+	public static int generation = 0;
 	public Main()
 	{
 		container = new JPanel();
@@ -27,6 +31,8 @@ public class Main {
 		GlobalVariables.osName = System.getProperty("os.name");
 		if(GlobalVariables.osName.contentEquals("Linux"))
 			GlobalVariables.animationSync = true;
+
+		neatLabel = new JLabel("" + Main.generation);
 	}
 	public void dereferenceObjects()
 	{
@@ -40,7 +46,7 @@ public class Main {
 		/*Game starts*/
 		canvas.setSize(GlobalVariables.C_WIDTH, GlobalVariables.C_HEIGHT);
 		canvas.setResizable(true);
-		canvas.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		canvas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		canvas.setVisible(true);
 		canvas.addKeyListener(bird);
 		
@@ -51,6 +57,9 @@ public class Main {
 		
 		map.setOpaque(false);
 		container.add(map);		
+		
+		neatLabel.setOpaque(false);
+		container.add(neatLabel);
 		
 		canvas.add(container);
 		
@@ -90,22 +99,38 @@ public class Main {
 		 * Input4: x speed
 		 * INPUT5: Acceleration
 		*/
-		Neat n = new Neat(GlobalVariables.inputCounts, GlobalVariables.outputCounts, 5) {
+		Neat n = new Neat(GlobalVariables.inputCounts, GlobalVariables.outputCounts, 20) {
 			@Override
 			public double calculateFitnessScore(Genome genome) {
 				// TODO Auto-generated method stub
 				Main m = new Main();
 				m.setNeatParamsToBird(this, genome);
-				double currTime = System.currentTimeMillis();
 				m.game();
 				m.closeWindow();
 				this.printGenome(genome);
-				return System.currentTimeMillis() - currTime;
+				Stat birdStat = m.bird.getStats();
+				birdStat.totalBirdJumps = max(1, birdStat.totalBirdJumps);
+				double fitness = 10 * birdStat.pipesCrossed + 
+								 birdStat.x_covered / birdStat.totalBirdJumps - 0.5 * abs(birdStat.y_diff_on_death);
+				System.out.println("[Stats]: " + birdStat.x_covered + "-" + birdStat.totalBirdJumps);
+				return fitness;
 			}
 		};
-		while(true)
+		while(generation < 20)
 		{
-			System.out.println("Hello world");
+			n.simulateGeneration();
+			generation++;
+			System.out.println("[Generation]: " + generation);
 		}
+	}
+	private static int max(int a, int b)
+	{
+		return a > b ? a : b;
+	}
+	private static double abs(double x)
+	{
+		if(x < 0)
+			x *= -1;
+		return x;
 	}
 }

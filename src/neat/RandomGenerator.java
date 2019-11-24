@@ -67,4 +67,19 @@ public class RandomGenerator {
 			return d;
 		return -d;
 	}
+	
+	private int min(int a, int b)
+	{
+		return a < b ? a : b;
+	}
+	private int max(int a, int b)
+	{
+		return a >= b ? a : b;
+	}
+	public int getRandomIntBetween(int a, int b)
+	{
+		int diff = max(a, b) - min(a, b);
+		int idx = random.nextInt() % diff;
+		return a + idx;
+	}
 }
