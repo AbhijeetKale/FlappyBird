@@ -12,6 +12,8 @@ enum GenomeLabel
 	WEIGHT_MUTATED,
 	CONN_MUTATED,
 	CROSSOVER,
+	PARENT,
+	ANCESTOR,
 	INIT
 }
 /*Represent the list of Genes/Connections in a Neural net, basically the neural itself*/

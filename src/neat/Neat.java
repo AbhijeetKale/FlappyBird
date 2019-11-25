@@ -151,8 +151,14 @@ public abstract class Neat {
 			//selection
 			this.selection(species);
 			//selection
+			SortedListIterator<Genome> iAncestors = species.iterator();
+			while(iAncestors.hasNext())
+			{
+				Genome genome= iAncestors.next();
+				genome.setLabel(GenomeLabel.ANCESTOR);
+				newGeneration.add(genome);
+			}
 			//CrossOver
-			int top50 = 1 + species.getSpeciesPopulation() / 2;
 			int crossOVerCount = 0;
 			if(species.getSpeciesPopulation() > 2)
 			{
@@ -160,12 +166,14 @@ public abstract class Neat {
 										 *Globals.matingCrossOverProportin) / 100;
 				for(int count = 0; count < crossOVerCount; count++)
 				{
-					int parentIdx1 = randomGenerator.getRandomIntWithLimit(top50);
+					int parentIdx1 = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
 					int parentIdx2 = parentIdx1;
 					while(parentIdx2 == parentIdx1)
-						parentIdx2 = randomGenerator.getRandomIntWithLimit(top50);
+						parentIdx2 = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
 					Genome parent1 = species.getGenome(parentIdx1);
+					parent1.setLabel(GenomeLabel.PARENT);;
 					Genome parent2 = species.getGenome(parentIdx2);
+					parent2.setLabel(GenomeLabel.PARENT);
 					Genome child = Genome.crossOver(parent1, parent2, 
 													this.inputNodeCount, this.outputNodeCount);
 					child.setLabel(GenomeLabel.CROSSOVER);
@@ -194,10 +202,6 @@ public abstract class Neat {
 				}
 			}
 			//mutation
-			
-			SortedListIterator<Genome> iAncestors = species.iterator();
-			while(iAncestors.hasNext())
-				newGeneration.add(iAncestors.next());
 		}
 		for(int count = speciesList.size() - 1; count >= 0; count--)
 			speciesList.remove(count);

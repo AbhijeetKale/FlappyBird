@@ -13,7 +13,7 @@ public class Globals {
 	
 	//crossover
 	static double enableDisableFlagProbablity = 75;
-	static double matingCrossOverProportin = 75;
+	static double matingCrossOverProportin = 50;
 	//crossover
 	
 	//Selection
@@ -22,9 +22,9 @@ public class Globals {
 	//Selection
 	
 	//mutation
-	static double weightMutationProbability = 85;
-	static double connectionMutationProbability = 10;
-	static double nodeMutationProbability = 5;
+	static double weightMutationProbability = 60;
+	static double connectionMutationProbability = 20;
+	static double nodeMutationProbability = 20;
 	static double randomlyChangeWeightProbability = 10;
 	static double weightDelta = 0.1;
 	//mutation
