@@ -47,7 +47,7 @@ public abstract class Neat {
 	public void printAllSpecies()
 	{
 		Iterator<Species> speciesIterator = speciesList.iterator();
-		/*Testing */
+		/*Testing*/
 		Genome test;
 		int count = 1, counter;
 		while(speciesIterator.hasNext())
@@ -153,10 +153,11 @@ public abstract class Neat {
 			//selection
 			//CrossOver
 			int top50 = 1 + species.getSpeciesPopulation() / 2;
+			int crossOVerCount = 0;
 			if(species.getSpeciesPopulation() > 2)
 			{
-				int crossOVerCount = (int) ((populationPreSelection - species.getSpeciesPopulation())
-											 * Globals.matingCrossOverProportin / 100);
+				crossOVerCount = (int) ((populationPreSelection - species.getSpeciesPopulation())
+										 *Globals.matingCrossOverProportin) / 100;
 				for(int count = 0; count < crossOVerCount; count++)
 				{
 					int parentIdx1 = randomGenerator.getRandomIntWithLimit(top50);
@@ -173,7 +174,7 @@ public abstract class Neat {
 			}
 			//CrossOver
 			//mutation
-			int mutationCount = populationPreSelection - species.getSpeciesPopulation();
+			int mutationCount = populationPreSelection - species.getSpeciesPopulation() - crossOVerCount;
 			for(int count = 0; count < mutationCount; count++)
 			{
 				int childIdx = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
@@ -209,8 +210,8 @@ public abstract class Neat {
 		{
 			newSpeciesIdentified = true;
 			Genome genome = iNewGenome.next();
-			printGenome(genome);
 			genome.setFitnessScore(calculateFitnessScore(genome));
+			printGenome(genome);
 			iSpecies = speciesList.iterator();
 			while(iSpecies.hasNext())
 			{
@@ -365,7 +366,10 @@ public abstract class Neat {
 			newInnovationNumber = true;
 		}
 		Gene newGene = new Gene(inNode, outNode, weight, true, innovationNumber);
-		genome.addGene(newGene);
+		if(!genome.containsGene(inNode, outNode))
+			genome.addGene(newGene);
+		else
+			return false;	
 		if(newInnovationNumber)
 			allExistingGenes.put(new Pair<Node, Node>(inNode, outNode), newGene);
 		return true;

@@ -42,7 +42,7 @@ public class Genome implements Comparator<Gene>, Cloneable {
 	{
 		return this.label;
 	}
-	public void setFitnessScore(double fitness)	
+	void setFitnessScore(double fitness)	
 	{
 		this.fitness = fitness;
 	}
@@ -103,15 +103,15 @@ public class Genome implements Comparator<Gene>, Cloneable {
 			excessGenes2 = null;
 		}
 		Iterator<Pair<Gene, Gene>> i = matchingGenes.iterator();
-		Pair<Gene, Gene> tmp;
+		Pair<Gene, Gene> tmpGene;
 		while(i.hasNext())
 		{
 			//matching gene code
-			tmp = i.next();
-			Gene[] geneArray = {tmp.getKey(), tmp.getValue()};
+			tmpGene = i.next();
+			Gene[] geneArray = {tmpGene.getKey(), tmpGene.getValue()};
 			double[] geneProbs = {50, 50};
 			Gene gene = (Gene) randomGenerator.probablityBasedAction(geneArray, geneProbs);
-			if(!tmp.getKey().isEnabled() || !tmp.getValue().isEnabled())
+			if(!tmpGene.getKey().isEnabled() || !tmpGene.getValue().isEnabled())
 			{
 				double[] enableDisable = {100 - Globals.enableDisableFlagProbablity, Globals.enableDisableFlagProbablity};
 				Boolean[] b = {true, false};
