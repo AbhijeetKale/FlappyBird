@@ -1,0 +1,1541 @@
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+
+################### CrossOver End###########################
+################### Mutation Start###########################
+Parent
+Genome: label = CROSSOVER Fitness = 25.54
+{outNode = 1 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.5909027639614558, enabled = true, inovationNumber = 1}
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4971110894583516, enabled = true, inovationNumber = 2}
+{outNode = 3 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6913378316966585, enabled = true, inovationNumber = 4}
+
+Child
+Genome: label = WEIGHT_MUTATED Fitness = 25.54
+{outNode = 1 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.5909027639614558, enabled = true, inovationNumber = 1}
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4971110894583516, enabled = true, inovationNumber = 2}
+{outNode = 3 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6913378316966585, enabled = true, inovationNumber = 4}
+
+################### Mutation End###########################
+################### Mutation Start###########################
+Parent
+Genome: label = ANCESTOR Fitness = 192.29999999999998
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7785493183684229, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.12771856416492192, enabled = true, inovationNumber = 3}
+
+Child
+Genome: label = WEIGHT_MUTATED Fitness = 192.29999999999998
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7785493183684229, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.12771856416492192, enabled = true, inovationNumber = 3}
+
+################### Mutation End###########################
+################### Mutation Start###########################
+Parent
+Genome: label = WEIGHT_MUTATED Fitness = 182.74
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.946752736033469, enabled = true, inovationNumber = 2}
+
+Child
+Genome: label = WEIGHT_MUTATED Fitness = 182.74
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.946752736033469, enabled = true, inovationNumber = 2}
+
+################### Mutation End###########################
+################### Mutation Start###########################
+Parent
+Genome: label = CONN_MUTATED Fitness = 45.16
+{outNode = 1 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.27424509269950614, enabled = false, inovationNumber = 1}
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7148499997284828, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.3162146745893041, enabled = true, inovationNumber = 3}
+{outNode = 3 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.5352923812587518, enabled = true, inovationNumber = 4}
+
+Child
+Genome: label = NODE_MUTATED Fitness = 45.16
+{outNode = 1 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.27424509269950614, enabled = false, inovationNumber = 1}
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7148499997284828, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.3162146745893041, enabled = true, inovationNumber = 3}
+{outNode = 3 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.5352923812587518, enabled = true, inovationNumber = 4}
+{outNode = 5 NodeType = HIDDEN, inNode = 4 NodeType = OUTPUT, weight = 0.27424509269950614, enabled = true, inovationNumber = 5}
+{outNode = 1 NodeType = INPUT, inNode = 5 NodeType = HIDDEN, weight = 1.0, enabled = true, inovationNumber = 6}
+
+################### Mutation End###########################
+################### Mutation Start###########################
+Parent
+Genome: label = WEIGHT_MUTATED Fitness = 90.89999999999999
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+Child
+Genome: label = NODE_MUTATED Fitness = 90.89999999999999
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+{outNode = 5 NodeType = HIDDEN, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = true, inovationNumber = 5}
+{outNode = 0 NodeType = INPUT, inNode = 5 NodeType = HIDDEN, weight = 1.0, enabled = true, inovationNumber = 7}
+
+################### Mutation End###########################
+Genome: label = CROSSOVER Fitness = 0.0neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+neat.InCorrectInputException: No input conns to Current Node: 4
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+[Generation]: 2
+***********************************************
+Species1:
+1) Genome: label = ANCESTOR Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.946752736033469, enabled = true, inovationNumber = 2}
+
+2) Genome: label = ANCESTOR Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.946752736033469, enabled = true, inovationNumber = 2}
+
+3) Genome: label = CROSSOVER Fitness = 249.96000000000004
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.12771856416492192, enabled = true, inovationNumber = 3}
+
+4) Genome: label = ANCESTOR Fitness = 226.41
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+5) Genome: label = ANCESTOR Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+6) Genome: label = WEIGHT_MUTATED Fitness = 209.72
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.946752736033469, enabled = true, inovationNumber = 2}
+
+7) Genome: label = ANCESTOR Fitness = 192.48000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.12771856416492192, enabled = true, inovationNumber = 3}
+
+8) Genome: label = CROSSOVER Fitness = 179.82
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+
+9) Genome: label = ANCESTOR Fitness = 170.75
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7785493183684229, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.12771856416492192, enabled = true, inovationNumber = 3}
+
+Species2:
+1) Genome: label = NODE_MUTATED Fitness = 61.220000000000006
+{outNode = 1 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.27424509269950614, enabled = false, inovationNumber = 1}
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7148499997284828, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.3162146745893041, enabled = true, inovationNumber = 3}
+{outNode = 3 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.5352923812587518, enabled = true, inovationNumber = 4}
+{outNode = 5 NodeType = HIDDEN, inNode = 4 NodeType = OUTPUT, weight = 0.27424509269950614, enabled = true, inovationNumber = 5}
+{outNode = 1 NodeType = INPUT, inNode = 5 NodeType = HIDDEN, weight = 1.0, enabled = true, inovationNumber = 6}
+
+***********************************************
+################### CrossOver Start###########################
+Parent 1
+Genome: label = ANCESTOR Fitness = 192.48000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.12771856416492192, enabled = true, inovationNumber = 3}
+
+Parent 2
+Genome: label = ANCESTOR Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.946752736033469, enabled = true, inovationNumber = 2}
+
+Child
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.946752736033469, enabled = true, inovationNumber = 2}
+
+################### CrossOver End###########################
+################### CrossOver Start###########################
+Parent 1
+Genome: label = ANCESTOR Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.946752736033469, enabled = true, inovationNumber = 2}
+
+Parent 2
+Genome: label = CROSSOVER Fitness = 179.82
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+
+Child
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+
+################### CrossOver End###########################
+################### CrossOver Start###########################
+Parent 1
+Genome: label = WEIGHT_MUTATED Fitness = 209.72
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.946752736033469, enabled = true, inovationNumber = 2}
+
+Parent 2
+Genome: label = CROSSOVER Fitness = 179.82
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+
+Child
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+
+################### CrossOver End###########################
+################### CrossOver Start###########################
+Parent 1
+Genome: label = CROSSOVER Fitness = 249.96000000000004
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.12771856416492192, enabled = true, inovationNumber = 3}
+
+Parent 2
+Genome: label = ANCESTOR Fitness = 192.48000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.12771856416492192, enabled = true, inovationNumber = 3}
+
+Child
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.4962221521299388, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.12771856416492192, enabled = true, inovationNumber = 3}
+
+################### CrossOver End###########################
+################### CrossOver Start###########################
+Parent 1
+Genome: label = ANCESTOR Fitness = 226.41
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.6137434208753373, enabled = false, inovationNumber = 2}
+
+Parent 2
+Genome: label = ANCESTOR Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.946752736033469, enabled = false, inovationNumber = 2}
+
+Child
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.946752736033469, enabled = false, inovationNumber = 2}
+
+################### CrossOver End###########################
+################### Mutation Start###########################
+Parent
+Genome: label = ANCESTOR Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.20196331909293286, enabled = false, inovationNumber = 2}
+
+Child
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.20196331909293286, enabled = false, inovationNumber = 2}
+
+################### Mutation End###########################
+################### Mutation Start###########################
+Parent
+Genome: label = CROSSOVER Fitness = 179.82
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.7102774999710708, enabled = true, inovationNumber = 2}
+
+Child
+Genome: label = WEIGHT_MUTATED Fitness = 179.82
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.7102774999710708, enabled = true, inovationNumber = 2}
+
+################### Mutation End###########################
+################### Mutation Start###########################
+Parent
+Genome: label = ANCESTOR Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+Child
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+################### Mutation End###########################
+################### Mutation Start###########################
+Parent
+Genome: label = ANCESTOR Fitness = 170.75
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7785493183684229, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.3722443535211921, enabled = true, inovationNumber = 3}
+
+Child
+Genome: label = WEIGHT_MUTATED Fitness = 170.75
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7785493183684229, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.3722443535211921, enabled = true, inovationNumber = 3}
+
+################### Mutation End###########################
+################### Mutation Start###########################
+Parent
+Genome: label = ANCESTOR Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+Child
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+################### Mutation End###########################
+***********************************************
+Species1:
+1) Genome: label = ANCESTOR Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+2) Genome: label = ANCESTOR Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+3) Genome: label = ANCESTOR Fitness = 249.96000000000004
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.7102774999710708, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.3722443535211921, enabled = true, inovationNumber = 3}
+
+4) Genome: label = ANCESTOR Fitness = 226.41
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+5) Genome: label = ANCESTOR Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+6) Genome: label = ANCESTOR Fitness = 209.72
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+7) Genome: label = ANCESTOR Fitness = 192.48000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.7102774999710708, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.3722443535211921, enabled = true, inovationNumber = 3}
+
+8) Genome: label = ANCESTOR Fitness = 179.82
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = -0.7102774999710708, enabled = true, inovationNumber = 2}
+
+9) Genome: label = ANCESTOR Fitness = 170.75
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7785493183684229, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.3722443535211921, enabled = true, inovationNumber = 3}
+
+Species2:
+1) Genome: label = NODE_MUTATED Fitness = 61.220000000000006
+{outNode = 1 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.27424509269950614, enabled = false, inovationNumber = 1}
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7148499997284828, enabled = true, inovationNumber = 2}
+{outNode = 2 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.3162146745893041, enabled = true, inovationNumber = 3}
+{outNode = 3 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.5352923812587518, enabled = true, inovationNumber = 4}
+{outNode = 5 NodeType = HIDDEN, inNode = 4 NodeType = OUTPUT, weight = 0.27424509269950614, enabled = true, inovationNumber = 5}
+{outNode = 1 NodeType = INPUT, inNode = 5 NodeType = HIDDEN, weight = 1.0, enabled = true, inovationNumber = 6}
+
+***********************************************
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+neat.InCorrectInputException: No input conns to Current Node: 4
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+neat.InCorrectInputException: No input conns to Current Node: 4
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+neat.InCorrectInputException: No input conns to Current Node: 4
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = CROSSOVER Fitness = 0.0
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+neat.InCorrectInputException: No input conns to Current Node: 4
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+neat.InCorrectInputException: No input conns to Current Node: 4
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+neat.InCorrectInputException: No input conns to Current Node: 4
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+neat.InCorrectInputException: No input conns to Current Node: 4
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 310.08
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97neat.InCorrectInputException: No input conns to Current Node: 4
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+neat.InCorrectInputException: No input conns to Current Node: 4
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 280.97
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.10196331909293285, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+neat.InCorrectInputException: No input conns to Current Node: 4
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Genome: label = WEIGHT_MUTATED Fitness = 225.01000000000002
+{outNode = 0 NodeType = INPUT, inNode = 4 NodeType = OUTPUT, weight = 0.7137434208753373, enabled = false, inovationNumber = 2}
+
+neat.InCorrectInputException: No input conns to Current Node: 4
+	at neat.Neat.setActivationValue(Neat.java:276)
+	at neat.Neat.calculateOutputForGenome(Neat.java:315)
+	at game.Bird.jumpDecision(Bird.java:195)
+	at game.Bird.run(Bird.java:222)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+

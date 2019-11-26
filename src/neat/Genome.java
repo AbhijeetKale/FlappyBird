@@ -152,7 +152,10 @@ public class Genome implements Comparator<Gene>, Cloneable{
 		SortedList<Gene> cloneGeneList = new SortedList<Gene>(cloneGenome);
 		SortedListIterator<Gene> iGene = this.genome.iterator();
 		while(iGene.hasNext())
-			cloneGeneList.add(iGene.next());
+		{
+			Gene cloneGene = (Gene) iGene.next().clone();
+			cloneGeneList.add(cloneGene);
+		}
 		cloneGenome.setGeneList(cloneGeneList);
 		cloneGenome.setNodeHashMap((HashMap<Node, Node>)this.nodes.clone());
 		cloneGenome.setFitnessScore(this.fitness);
@@ -264,8 +267,8 @@ public class Genome implements Comparator<Gene>, Cloneable{
 		else
 		{
 			Integer[] action = {-1, 1};
-			double delta = (int) randomGenerator.getRandomAction(action);
-			delta *= Globals.weightDelta;
+			int deltaSign = (int) randomGenerator.getRandomAction(action);
+			double delta = (double)deltaSign * Globals.weightDelta;
 			weight = randomGene.getWeight() + delta;
 			weight = min(max(weight, Globals.minWeight), Globals.maxWeight);
 		}

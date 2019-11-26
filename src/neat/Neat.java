@@ -44,6 +44,16 @@ public abstract class Neat {
 		}
 		System.out.println();
 	}
+	public void testing()
+	{
+		Node inNode, outNode;
+		inNode = new Node(4, NodeType.OUTPUT);
+		outNode = new Node(0, NodeType.INPUT);
+		Gene gene = new Gene(inNode, outNode, 50, true, 1);
+		Genome genome = new Genome();
+		genome.addGene(gene);
+		addRandomConnectionToGenome(genome);
+	}
 	public void printAllSpecies()
 	{
 		Iterator<Species> speciesIterator = speciesList.iterator();
@@ -123,7 +133,6 @@ public abstract class Neat {
 			genome.setFitnessScore(this.calculateFitnessScore(genome));
 			genome.setLabel(GenomeLabel.INIT);
 			species1.addGenome(genome);
-			printGenome(genome);
 		}
 		speciesList.add(species1);
 	}
@@ -141,15 +150,15 @@ public abstract class Neat {
 		Iterator<Species> iSpecies = speciesList.iterator();
 		int populationPreSelection;
 		ArrayList<Genome> newGeneration = new ArrayList<Genome>();
-		System.out.println("***********************************************");
-		printAllSpecies();
-		System.out.println("***********************************************");
 		while(iSpecies.hasNext())
 		{
 			Species species = iSpecies.next();
 			populationPreSelection = species.getSpeciesPopulation();
 			//selection
 			this.selection(species);
+			System.out.println("***********************************************");
+			printAllSpecies();
+			System.out.println("***********************************************");
 			//selection
 			//CrossOver
 			int crossOVerCount = 0;
@@ -169,6 +178,14 @@ public abstract class Neat {
 													this.inputNodeCount, this.outputNodeCount);
 					child.setLabel(GenomeLabel.CROSSOVER);
 					newGeneration.add(child);
+					System.out.println("################### CrossOver Start###########################");
+					System.out.println("Parent 1");
+					printGenome(parent1);
+					System.out.println("Parent 2");
+					printGenome(parent2);
+					System.out.println("Child");
+					printGenome(child);
+					System.out.println("################### CrossOver End###########################");
 				}
 			}
 			//CrossOver
@@ -179,9 +196,16 @@ public abstract class Neat {
 				int childIdx = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
 				try
 				{
-					Genome child = (Genome) species.getGenome(childIdx).clone();
+					Genome parent = species.getGenome(childIdx);
+					Genome child = (Genome) parent.clone();
 					mutateGenome(child);
 					newGeneration.add(child);
+					System.out.println("################### Mutation Start###########################");
+					System.out.println("Parent");
+					printGenome(parent);
+					System.out.println("Child");
+					printGenome(child);
+					System.out.println("################### Mutation End###########################");
 				}
 				catch(CloneNotSupportedException e)
 				{
@@ -213,7 +237,6 @@ public abstract class Neat {
 			newSpeciesIdentified = true;
 			Genome genome = iNewGenome.next();
 			genome.setFitnessScore(calculateFitnessScore(genome));
-			printGenome(genome);
 			iSpecies = speciesList.iterator();
 			while(iSpecies.hasNext())
 			{
@@ -432,9 +455,9 @@ public abstract class Neat {
 		action = (MutationAction) randomGenerator.probablityBasedAction(possibleActions, mutationProbs);
 		switch(action)
 		{
-		case NODE:
-			addRandomNodeToGenome(genome);
-			genome.setLabel(GenomeLabel.NODE_MUTATED);
+		case WEIGHT:
+			mutateWeights(genome);
+			genome.setLabel(GenomeLabel.WEIGHT_MUTATED);
 			break;
 		case CONNECTION:
 			if(addRandomConnectionToGenome(genome))
@@ -442,9 +465,9 @@ public abstract class Neat {
 				genome.setLabel(GenomeLabel.CONN_MUTATED);
 				break;
 			}
-		case WEIGHT:
-			mutateWeights(genome);
-			genome.setLabel(GenomeLabel.WEIGHT_MUTATED);
+		case NODE:
+			addRandomNodeToGenome(genome);
+			genome.setLabel(GenomeLabel.NODE_MUTATED);
 			break;
 		}
 	}
