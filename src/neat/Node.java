@@ -5,7 +5,7 @@ enum NodeType
 	HIDDEN,
 	OUTPUT
 }
-public class Node {
+public class Node implements Cloneable{
 	private int nodeId;
 	private NodeType type;
 	public Node(int id, NodeType type)
@@ -37,4 +37,9 @@ public class Node {
 			return true;
 		return false;
 	}
+	protected Object clone() throws CloneNotSupportedException {
+		Node clone = new Node(this.nodeId, this.type);
+		return clone;
+		
+	};
 }

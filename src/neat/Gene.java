@@ -1,6 +1,6 @@
 package neat;
 /*Has the info of each connection in the neural net*/
-public class Gene {
+public class Gene implements Cloneable{
 	private final Node inNode;		//connection which goes into a node
 	private final Node outNode;		// connection which comes out of a node
 	private double weight;
@@ -52,5 +52,11 @@ public class Gene {
 		str += ", enabled = " + enabled;
 		str += ", inovationNumber = " + inovationNumber + "}";
 		return str;
+	}
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		Gene clone = new Gene((Node) this.inNode.clone(), (Node) this.outNode.clone(), this.weight, this.enabled, this.inovationNumber);
+		return clone;
 	}
 }

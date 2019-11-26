@@ -151,13 +151,6 @@ public abstract class Neat {
 			//selection
 			this.selection(species);
 			//selection
-			SortedListIterator<Genome> iAncestors = species.iterator();
-			while(iAncestors.hasNext())
-			{
-				Genome genome= iAncestors.next();
-				genome.setLabel(GenomeLabel.ANCESTOR);
-				newGeneration.add(genome);
-			}
 			//CrossOver
 			int crossOVerCount = 0;
 			if(species.getSpeciesPopulation() > 2)
@@ -171,9 +164,7 @@ public abstract class Neat {
 					while(parentIdx2 == parentIdx1)
 						parentIdx2 = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
 					Genome parent1 = species.getGenome(parentIdx1);
-					parent1.setLabel(GenomeLabel.PARENT);;
 					Genome parent2 = species.getGenome(parentIdx2);
-					parent2.setLabel(GenomeLabel.PARENT);
 					Genome child = Genome.crossOver(parent1, parent2, 
 													this.inputNodeCount, this.outputNodeCount);
 					child.setLabel(GenomeLabel.CROSSOVER);
@@ -202,6 +193,13 @@ public abstract class Neat {
 				}
 			}
 			//mutation
+			SortedListIterator<Genome> iAncestors = species.iterator();
+			while(iAncestors.hasNext())
+			{
+				Genome genome= iAncestors.next();
+				genome.setLabel(GenomeLabel.ANCESTOR);
+				newGeneration.add(genome);
+			}
 		}
 		for(int count = speciesList.size() - 1; count >= 0; count--)
 			speciesList.remove(count);
@@ -295,6 +293,7 @@ public abstract class Neat {
 				}
 				catch(InCorrectInputException e)
 				{
+					printGenome(genome);
 					e.printStackTrace();
 				}
 

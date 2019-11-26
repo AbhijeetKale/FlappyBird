@@ -17,7 +17,7 @@ enum GenomeLabel
 	INIT
 }
 /*Represent the list of Genes/Connections in a Neural net, basically the neural itself*/
-public class Genome implements Comparator<Gene>, Cloneable {
+public class Genome implements Comparator<Gene>, Cloneable{
 	
 	private SortedList<Gene> genome;
 	private double fitness;
@@ -145,6 +145,31 @@ public class Genome implements Comparator<Gene>, Cloneable {
 		return child;
 	}
 	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		Genome cloneGenome = new Genome();
+		SortedList<Gene> cloneGeneList = new SortedList<Gene>(cloneGenome);
+		SortedListIterator<Gene> iGene = this.genome.iterator();
+		while(iGene.hasNext())
+			cloneGeneList.add(iGene.next());
+		cloneGenome.setGeneList(cloneGeneList);
+		cloneGenome.setNodeHashMap((HashMap<Node, Node>)this.nodes.clone());
+		cloneGenome.setFitnessScore(this.fitness);
+		cloneGenome.setLabel(this.label);
+		return cloneGenome;
+	}
+	
+	private void setNodeHashMap(HashMap<Node, Node> nodeMap)
+	{
+		this.nodes = nodeMap;
+	}
+	
+	private void setGeneList(SortedList<Gene> geneList)
+	{
+		this.genome = geneList;
+	}
+	
 	public int genomeSize()
 	{
 		return this.genome.size();
@@ -178,30 +203,6 @@ public class Genome implements Comparator<Gene>, Cloneable {
 		}
 		return false;
 	}
-	private int compareGenes(Gene arg0, Gene arg1) throws Exception
-	{
-		// TODO Auto-generated method stub
-		if(arg0.getInovationNumber() < arg1.getInovationNumber())
-			return -1;
-		else if(arg0.getInovationNumber() > arg1.getInovationNumber())
-			return 1;
-		else
-			throw new Exception("Connection already present");
-	}
-	@Override
-	public int compare(Gene arg0, Gene arg1)
-	{
-		try
-		{
-			return compareGenes(arg0, arg1);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return 0;
-	}
-	
 	//dependency graph: 1st element for each element is the node dependent on all following nodes	
 	public ArrayList<listNode<Node>> nodeDependencyGraph()
 	{
@@ -248,11 +249,6 @@ public class Genome implements Comparator<Gene>, Cloneable {
 		updatedWeightMap = true;
 		return weightMap;
 	}
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		return super.clone();
-	}
 	public void mutateRandomWeight()
 	{
 		RandomGenerator randomGenerator = new RandomGenerator();
@@ -283,5 +279,28 @@ public class Genome implements Comparator<Gene>, Cloneable {
 	private double max(double a, double b)
 	{
 		return a > b ? a : b;
+	}
+	private int compareGenes(Gene arg0, Gene arg1) throws Exception
+	{
+		// TODO Auto-generated method stub
+		if(arg0.getInovationNumber() < arg1.getInovationNumber())
+			return -1;
+		else if(arg0.getInovationNumber() > arg1.getInovationNumber())
+			return 1;
+		else
+			throw new Exception("Connection already present");
+	}
+	@Override
+	public int compare(Gene arg0, Gene arg1)
+	{
+		try
+		{
+			return compareGenes(arg0, arg1);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

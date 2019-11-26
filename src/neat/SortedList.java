@@ -22,14 +22,14 @@ public class SortedList<E> {
 	
 	private listNode<E> head, tail;
 	private int size;
-	private Comparator<E> comparaTor;
+	Comparator<E> dataFunction;
 	
-	public SortedList(Comparator<E> comparaTor)
+	public SortedList(Comparator<E> dataFunction)
 	{
 		this.head = null;
 		this.tail = null;
 		this.size = 0;
-		this.comparaTor = comparaTor;
+		this.dataFunction = dataFunction;
 	}
 	/*Adding elements in a sorted manner*/
 	public void add(E data)
@@ -46,7 +46,7 @@ public class SortedList<E> {
 			tmp = this.head;
 			while(tmp != null)
 			{
-				if(comparaTor.compare(data, tmp.data) < 0)
+				if(dataFunction.compare(data, tmp.data) < 0)
 				{
 					nextNode = tmp.next;
 					tmp.next = new listNode<E>(tmp.data);

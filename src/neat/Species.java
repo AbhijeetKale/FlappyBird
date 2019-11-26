@@ -13,11 +13,6 @@ public class Species implements Comparator<Genome>{
 		this.speciesPopulation = new SortedList<Genome>(this);
 		this.representativeGenome = null;
 	}
-	public Species(Genome g)
-	{
-		this.speciesPopulation = new SortedList<Genome>(this);
-		speciesPopulation.add(g);
-	}
 
 	public Genome getRepresentativeGenome()
 	{
