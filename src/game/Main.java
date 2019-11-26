@@ -115,6 +115,7 @@ public class Main {
 				return fitness;
 			}
 		};
+		
 		generation = 1;
 		while(generation < 20)
 		{

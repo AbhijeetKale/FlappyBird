@@ -44,16 +44,6 @@ public abstract class Neat {
 		}
 		System.out.println();
 	}
-	public void testing()
-	{
-		Node inNode, outNode;
-		inNode = new Node(4, NodeType.OUTPUT);
-		outNode = new Node(0, NodeType.INPUT);
-		Gene gene = new Gene(inNode, outNode, 50, true, 1);
-		Genome genome = new Genome();
-		genome.addGene(gene);
-		addRandomConnectionToGenome(genome);
-	}
 	public void printAllSpecies()
 	{
 		Iterator<Species> speciesIterator = speciesList.iterator();

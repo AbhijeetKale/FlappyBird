@@ -199,7 +199,8 @@ public class Genome implements Comparator<Gene>, Cloneable{
 		while(i.hasNext())
 		{
 			Gene g = i.next();
-			if(g.getInNode() == inNode && g.getOutNode() == outNode)
+			if(g.getInNode().getNodeId() == inNode.getNodeId() && 
+				g.getOutNode().getNodeId() == outNode.getNodeId())
 			{
 				return true;
 			}
