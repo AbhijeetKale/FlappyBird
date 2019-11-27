@@ -44,7 +44,7 @@ public class Species implements Comparator<Genome>{
 		while(i.hasNext())
 		{
 			match = i.next();
-			avgWeightDifference += abs(match.getKey().getWeight() + match.getValue().getWeight());
+			avgWeightDifference += abs(match.getKey().getWeight() - match.getValue().getWeight());
 		}
 		avgWeightDifference = avgWeightDifference / matchingGenomes.size();
 		disjointGenes= genomePairData.getDisjointGenes2().size();

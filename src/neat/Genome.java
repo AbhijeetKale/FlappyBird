@@ -109,38 +109,80 @@ public class Genome implements Comparator<Gene>, Cloneable{
 		while(i.hasNext())
 		{
 			//matching gene code
-			tmpGene = i.next();
-			Gene[] geneArray = {tmpGene.getKey(), tmpGene.getValue()};
-			double[] geneProbs = {50, 50};
-			Gene gene = (Gene) randomGenerator.probablityBasedAction(geneArray, geneProbs);
-			if(!tmpGene.getKey().isEnabled() || !tmpGene.getValue().isEnabled())
+			try
 			{
-				double[] enableDisable = {100 - Globals.enableDisableFlagProbablity, Globals.enableDisableFlagProbablity};
-				Boolean[] b = {true, false};
-				boolean flag = (boolean) randomGenerator.probablityBasedAction( b, enableDisable);
-				gene.setEnabledFlag(flag);
+				tmpGene = i.next();
+				Gene[] geneArray = {tmpGene.getKey(), tmpGene.getValue()};
+				double[] geneProbs = {50, 50};
+				Gene randomMatchGene = (Gene) randomGenerator.probablityBasedAction(geneArray, geneProbs);
+				Gene gene = (Gene) randomMatchGene.clone();
+				if(!tmpGene.getKey().isEnabled() || !tmpGene.getValue().isEnabled())
+				{
+					double[] enableDisable = {100 - Globals.enableDisableFlagProbablity, Globals.enableDisableFlagProbablity};
+					Boolean[] b = {true, false};
+					boolean flag = (boolean) randomGenerator.probablityBasedAction( b, enableDisable);
+					gene.setEnabledFlag(flag);
+				}
+				child.addGene(gene);
 			}
-			child.addGene(gene);
+			catch(CloneNotSupportedException e)
+			{
+				e.printStackTrace();
+			}
 		}
 		
 		Iterator<Gene> gi1 = disjointGenes1.iterator();
 		while(gi1.hasNext())
-			child.addGene(gi1.next());
+		{
+			try
+			{
+				child.addGene((Gene) gi1.next().clone());
+			}
+			catch(CloneNotSupportedException e)
+			{
+				e.printStackTrace();
+			}
+		}
 
 		Iterator<Gene> gi2 = disjointGenes2.iterator();
 		while(gi2.hasNext())
-			child.addGene(gi2.next());
+		{
+			try
+			{
+				child.addGene((Gene) gi2.next().clone());
+			}
+			catch(CloneNotSupportedException e)
+			{
+				e.printStackTrace();
+			}
+		}
 		
 		Iterator<Gene> ei1 = excessGenes.iterator();
 		while(ei1.hasNext())
-			child.addGene(ei1.next());
-
+		{
+			try
+			{
+				child.addGene((Gene) ei1.next().clone());
+			}
+			catch(CloneNotSupportedException e)
+			{
+				e.printStackTrace();
+			}
+		}
 		if(excessGenes2 != null)
 		{
 			Iterator<Gene> ei2 = excessGenes2.iterator();
 			while(ei2.hasNext())
-				child.addGene(ei2.next());
-		}
+			{
+				try
+				{
+					child.addGene((Gene) ei2.next().clone());
+				}
+				catch(CloneNotSupportedException e)
+				{
+					e.printStackTrace();
+				}
+			}		}
 		
 		return child;
 	}
