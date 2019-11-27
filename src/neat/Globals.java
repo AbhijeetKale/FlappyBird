@@ -4,7 +4,7 @@ package neat;
 public class Globals {
 	
 	//speciation
-	static double delta_Threshhold = 3.0;
+	static double delta_Threshhold = 2.0;
 	static double delta_C1 = 0.7;
 	static double delta_C2 = 0.7;
 	static double delta_C3 = 0.3;

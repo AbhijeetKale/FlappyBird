@@ -140,15 +140,15 @@ public abstract class Neat {
 		Iterator<Species> iSpecies = speciesList.iterator();
 		int populationPreSelection;
 		ArrayList<Genome> newGeneration = new ArrayList<Genome>();
+		System.out.println("***********************************************");
+		printAllSpecies();
+		System.out.println("***********************************************");
 		while(iSpecies.hasNext())
 		{
 			Species species = iSpecies.next();
 			populationPreSelection = species.getSpeciesPopulation();
 			//selection
 			this.selection(species);
-			System.out.println("***********************************************");
-			printAllSpecies();
-			System.out.println("***********************************************");
 			//selection
 			//CrossOver
 			int crossOVerCount = 0;
@@ -181,6 +181,16 @@ public abstract class Neat {
 			//CrossOver
 			//mutation
 			int mutationCount = populationPreSelection - species.getSpeciesPopulation() - crossOVerCount;
+			/*no new child nodes being created.
+			*crossOverCount = 0, and populationPreSelection - current population == 0
+			* => species population is less than min species population
+			* => selection did not cut out any genomes, hence mutation is req if
+			* condition for crossover is not met,
+			*/
+			if(crossOVerCount == 0 && mutationCount == 0)
+			{
+				mutationCount = Globals.minimumPopulation - species.getSpeciesPopulation();
+			}
 			for(int count = 0; count < mutationCount; count++)
 			{
 				int childIdx = randomGenerator.getRandomIntWithLimit(species.getSpeciesPopulation());
