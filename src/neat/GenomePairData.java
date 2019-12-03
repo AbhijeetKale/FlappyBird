@@ -28,6 +28,7 @@ public class GenomePairData {
 	
 	private void createGenomePariData()
 	{
+		boolean prefixExcessGene = true;
 		Gene gene1 = null, gene2 = null;
 		int inNo1 = 0, inNo2 = 0;
 		SortedListIterator<Gene> i1 = this.genome1.iterator();
@@ -41,10 +42,11 @@ public class GenomePairData {
 			if(inNo1 == inNo2)
 			{
 				matchingPairs.add(new Pair<Gene, Gene>(gene1, gene2));
+				prefixExcessGene = false;
 				i1.next();
 				i2.next();
 			}
-			else if(matchingPairs.size() == 0)
+			else if(prefixExcessGene)
 			{
 				if(inNo1 < inNo2)
 				{
@@ -56,6 +58,7 @@ public class GenomePairData {
 					excessGenes2.add(gene2);
 					i2.next();
 				}
+				prefixExcessGene = false;
 			}
 			else if(inNo1 < inNo2)
 			{
