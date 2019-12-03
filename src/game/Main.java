@@ -97,6 +97,8 @@ public class Main {
 		 * Input2: x distance between bird and pipe
 		 * INput3: X Speed of map
 		 * input 4: y displacement between bird and 2nd pipe
+		 * Input 5: Width of pipe
+		 * Input 6: ACC
 		*/
 		Neat n = new Neat(GlobalVariables.inputCounts, GlobalVariables.outputCounts, 20) {
 			@Override

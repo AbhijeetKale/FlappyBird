@@ -160,36 +160,34 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	}
 	private boolean jumpDecision()
 	{
+		/*
+		 * Using 5 different inputs to neat:
+		 * Input1: y displacement between bird and pipe gap
+		 * Input2: x distance between bird and pipe
+		 * INput3: y displacement between bird and lower pipe gap
+		 * Input4: x distance between bird and pipe 's other end
+		 * Input5: ACC
+		*/
 		Iterator<Pipe> iterator = pipesInView.iterator();
-		int y_diff = 1, x_diff = -1, next_pipe_view = 0;
+		int y_diff = 1, x_diff = -1;
 		double[] input = new double[GlobalVariables.inputCounts];
-		input[3] = -10000;
 		Pipe p;
 		while(iterator.hasNext())
 		{
 			p = iterator.next();
-			x_diff = p.getPositionX() - this.x + GlobalVariables.PIPE_WIDTH;
+			x_diff = p.getPositionX() - this.x;
 			if(x_diff > 0)
 			{
 				this.birdStat.pipesCrossed = max(0, p.getId() - 1);
-				y_diff = this.y - (GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP / 2);
-				if(next_pipe_view == 1)
-				{
-					input[3] = y_diff; 
-					break;
-				}
-				else
-				{
-					input[0] = y_diff;
-					input[1] = x_diff;
-				}
-				next_pipe_view++;
+				y_diff = this.y - (GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP);
+				input[0] = y_diff;
+				input[1] = x_diff;
+				input[2] = GlobalVariables.C_HEIGHT - p.getHeight();
+				input[3] = p.getPositionX() - this.x + GlobalVariables.PIPE_WIDTH;
 			}
 		}
 		List<Double> output;
-		input[2] = GlobalVariables.xSpeed;
-		if(input[3] == -10000)
-			input[3] = input[2];
+		input[4] = this.ACC;
 		try
 		{
 			output = neat.calculateOutputForGenome(this.genome, input);

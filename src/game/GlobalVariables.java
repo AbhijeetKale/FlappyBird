@@ -37,7 +37,7 @@ public class GlobalVariables {
 	
 	
 	/*Neat specific configs*/
-	static final int inputCounts = 4;
+	static final int inputCounts = 5;
 	static final int outputCounts = 1;
 	
 	static int xSpeed;
