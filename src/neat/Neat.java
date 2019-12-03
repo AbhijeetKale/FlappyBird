@@ -121,6 +121,7 @@ public abstract class Neat {
 					allExistingGenes.put(p, gene);
 			}
 			genome.setFitnessScore(this.calculateFitnessScore(genome));
+			printGenome(genome);
 			genome.setLabel(GenomeLabel.INIT);
 			species1.addGenome(genome);
 		}
@@ -152,7 +153,7 @@ public abstract class Neat {
 			//selection
 			//CrossOver
 			int crossOVerCount = 0;
-			if(species.getSpeciesPopulation() > 2)
+			if(species.getSpeciesPopulation() > 1)
 			{
 				crossOVerCount = (int) ((populationPreSelection - species.getSpeciesPopulation())
 										 *Globals.matingCrossOverProportin) / 100;
