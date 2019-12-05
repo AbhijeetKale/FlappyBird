@@ -184,6 +184,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 				input[1] = x_diff;
 				input[2] = GlobalVariables.C_HEIGHT - p.getHeight();
 				input[3] = p.getPositionX() - this.x + GlobalVariables.PIPE_WIDTH;
+				break;
 			}
 		}
 		List<Double> output;
