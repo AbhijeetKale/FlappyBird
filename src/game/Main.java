@@ -1,14 +1,11 @@
 package game;
 
 import java.awt.event.WindowEvent;
-import java.lang.System.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
-import neat.Genome;
-import neat.Neat;
 
 public class Main {
 	
@@ -81,46 +78,17 @@ public class Main {
 		container.removeAll();
 		canvas.removeAll();
 	}
-	public void setNeatParamsToBird(Neat n, Genome genome)
-	{
-		bird.setNeatParamsToBird(n, genome);
-	}
 	public void closeWindow()
 	{
 		canvas.dispatchEvent(new WindowEvent(canvas,  WindowEvent.WINDOW_CLOSING));
 	}
 	public static void main(String[] args)
 	{
-		Neat n = new Neat(GlobalVariables.inputCounts, GlobalVariables.outputCounts, 70) {
-			@Override
-			public double calculateFitnessScore(Genome genome) {
-				// TODO Auto-generated method stub
-				Main m = new Main();
-				m.setNeatParamsToBird(this, genome);
-				double runTime = System.currentTimeMillis();
-				m.game();
-				runTime = System.currentTimeMillis() - runTime;
-				m.closeWindow();
-				Stat birdStat = m.bird.getStats();
-				//birdStat.totalBirdJumps = max(1, birdStat.totalBirdJumps);
-				double fitness = 0.01 * runTime + 
-								 - 0.1 * parse(birdStat.y_diff_on_death);
-				return fitness;
-			}
-		};
-		
-		generation = 1;
-		while(generation < 20)
+		while(true)
 		{
-			n.simulateGeneration();
-			System.out.println("[Generation]: " + generation++);
+			Main m = new Main();
+			m.game();
+			m.closeWindow();
 		}
 	}
-	private static double parse(double y)
-	{
-		if(y < 0)
-			y = y * -1;
-		return y;
-	}
-
 }

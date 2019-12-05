@@ -52,11 +52,6 @@ public class Map extends JPanel implements Runnable{
 			Random r = new Random();
 			int ranHeight =  r.nextInt(400);
 			Pipe p = new Pipe(ranHeight, ++pipeCount);
-			if(pipeCount % 5 == 0 && GlobalVariables.xSpeed < GlobalVariables.MOVEMENT_X * 3)
-			{
-				GlobalVariables.xSpeed++;
-				GlobalVariables.pipeInterval -= GlobalVariables.PIPE_INTERVAL / 3;
-			}
 			pipesInView.add(p);
 		}
 		pipeCounter += 1;

@@ -7,12 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.swing.JPanel;
-import neat.Genome;
-import neat.InCorrectInputException;
-import neat.Neat;
 import others.Mutex;
 
 	
@@ -26,8 +22,6 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	private int velocity = 0;
 	private Thread animator;
 	private CustomList<Pipe> pipesInView;
-	private Genome genome;
-	private Neat neat;
 	private Stat birdStat;
 	
 	public Bird(int height, int width)
@@ -43,11 +37,6 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 	public Stat getStats()
 	{
 		return this.birdStat;
-	}
-	public void setNeatParamsToBird(Neat n, Genome genome)
-	{
-		this.genome = genome;
-		this.neat = n;
 	}
 
 	public void setBirdPosition(int x, int y)
@@ -158,61 +147,6 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		
 		GlobalVariables.isBirdAlive= false;
 	}
-	private boolean jumpDecision()
-	{
-		/*
-		 * Using 5 different inputs to neat:
-		 * Input1: y displacement between bird and pipe gap
-		 * Input2: x distance between bird and pipe
-		 * INput3: y displacement between bird and lower pipe gap
-		 * Input4: x distance between bird and pipe 's other end
-		 * Input5: ACC
-		 */
-		Iterator<Pipe> iterator = pipesInView.iterator();
-		int y_diff = 1, x_diff = -1;
-		double[] input = new double[GlobalVariables.inputCounts];
-		Pipe p;
-		while(iterator.hasNext())
-		{
-			p = iterator.next();
-			x_diff = p.getPositionX() - this.x - GlobalVariables.BIRD_SIZE / 2 + GlobalVariables.PIPE_WIDTH;
-			if(x_diff > 0)
-			{
-				this.birdStat.pipesCrossed = max(0, p.getId() - 1);
-				y_diff = (GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP)
-						- this.y + GlobalVariables.BIRD_SIZE / 2;
-				
-				input[0] = y_diff;
-				input[1] = x_diff - GlobalVariables.PIPE_WIDTH / 2;
-				input[2] = GlobalVariables.C_HEIGHT - p.getHeight();
-				input[3] = p.getPositionX() - this.x + GlobalVariables.PIPE_WIDTH;
-				break;
-			}
-		}
-		List<Double> output;
-		input[4] = this.ACC;
-		try
-		{
-			output = neat.calculateOutputForGenome(this.genome, input);
-		}
-		catch(InCorrectInputException e)
-		{
-			e.printStackTrace();
-			return false;
-		}
-		if(output.size() > 0)
-		{
-			double outputX = output.get(0);
-
-/*			String s = "[input] " + input[0] + "-" + input[1]
-						+ "-" + input[2] + "-" + input[3] + "-" + input[4];
-			System.out.println(s);
-			System.out.println(outputX);
-			System.out.println();*/
-			return outputX > 0.5 ? true : false;
-		}
-		return false;
-	}
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -220,11 +154,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		while(GlobalVariables.isBirdAlive)
 		{
 			beforetime = System.currentTimeMillis();
-			if(jumpDecision())
-			{
-				this.velocity = GlobalVariables.JUMP_VELOCITY;
-				birdStat.totalBirdJumps++;
-			}
+			birdStat.totalBirdJumps++;
 			birdStat.x_covered += GlobalVariables.MOVEMENT_X;
 			cycle();
 			repaint();
@@ -247,22 +177,16 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_SPACE)
 			synchronized(Mutex.class)
 			{
-				//this.velocity = GlobalVariables.JUMP_VELOCITY;
-				GlobalVariables.isBirdAlive = false;
+				this.velocity = GlobalVariables.JUMP_VELOCITY;
 			}
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
-	}
-	private int max(int a, int b)
-	{
-		return a > b ? a : b;
 	}
 }
