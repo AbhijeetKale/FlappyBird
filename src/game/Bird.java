@@ -167,7 +167,7 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		 * INput3: y displacement between bird and lower pipe gap
 		 * Input4: x distance between bird and pipe 's other end
 		 * Input5: ACC
-		*/
+		 */
 		Iterator<Pipe> iterator = pipesInView.iterator();
 		int y_diff = 1, x_diff = -1;
 		double[] input = new double[GlobalVariables.inputCounts];
@@ -175,15 +175,18 @@ public class Bird extends JPanel implements Runnable, KeyListener{
 		while(iterator.hasNext())
 		{
 			p = iterator.next();
-			x_diff = p.getPositionX() - this.x;
+			x_diff = p.getPositionX() - this.x - GlobalVariables.BIRD_SIZE / 2 + GlobalVariables.PIPE_WIDTH;
 			if(x_diff > 0)
 			{
 				this.birdStat.pipesCrossed = max(0, p.getId() - 1);
-				y_diff = this.y - (GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP);
+				y_diff = (GlobalVariables.C_HEIGHT - p.getHeight() - GlobalVariables.GAP)
+						- this.y + GlobalVariables.BIRD_SIZE / 2;
+				
 				input[0] = y_diff;
-				input[1] = x_diff;
+				input[1] = x_diff - GlobalVariables.PIPE_WIDTH / 2;
 				input[2] = GlobalVariables.C_HEIGHT - p.getHeight();
 				input[3] = p.getPositionX() - this.x + GlobalVariables.PIPE_WIDTH;
+				break;
 			}
 		}
 		List<Double> output;

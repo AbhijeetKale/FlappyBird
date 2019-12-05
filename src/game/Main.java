@@ -91,16 +91,7 @@ public class Main {
 	}
 	public static void main(String[] args)
 	{
-		/*
-		 * Using 5 different inputs to neat:
-		 * Input1: y displacement between bird and pipe gap
-		 * Input2: x distance between bird and pipe
-		 * INput3: X Speed of map
-		 * input 4: y displacement between bird and 2nd pipe
-		 * Input 5: Width of pipe
-		 * Input 6: ACC
-		*/
-		Neat n = new Neat(GlobalVariables.inputCounts, GlobalVariables.outputCounts, 20) {
+		Neat n = new Neat(GlobalVariables.inputCounts, GlobalVariables.outputCounts, 70) {
 			@Override
 			public double calculateFitnessScore(Genome genome) {
 				// TODO Auto-generated method stub
